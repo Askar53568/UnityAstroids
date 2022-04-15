@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private bool thrusting;
     private bool moveBack;
 
-    private float turnDirection;
+    private float turnDirection= 0.0f;
 
     private  void Awake()
     {
@@ -31,36 +31,14 @@ public class Player : MonoBehaviour
         handler.AssignCommand(KeyCode.Space, new ShootCommand(this));
         handler.AssignCommand(KeyCode.W, new MoveForwardCommand(this,rigidBody));
         handler.AssignCommand(KeyCode.UpArrow, new MoveForwardCommand(this, rigidBody));
+        handler.AssignCommand(KeyCode.S, new MoveBackCommand(this, rigidBody));
+        handler.AssignCommand(KeyCode.D, new TurnRightCommand(this, rigidBody));
+        handler.AssignCommand(KeyCode.A, new TurnLeftCommand(this,rigidBody));
     }
 
     // Gets called every frame the game is running
     private void Update()
     {
-
-        moveBack = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
-    
-
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            print("up arrow key is held down");
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            print("down arrow key is held down");
-        }
-
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            turnDirection = 1.0f;
-        }
-        else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
-            turnDirection = -1.0f;
-        }
-        else
-        {
-            turnDirection = 0.0f;
-        }
 
 
     }
@@ -68,17 +46,6 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if(moveBack)
-        {
-            rigidBody.AddForce(-(this.transform.up) * this.thrustSpeed);
-        }
-
-
-        if(turnDirection != 0.0f)
-        {
-            rigidBody.AddTorque(turnDirection * this.turnSpeed);
-            print("turning");
-        }
     }
 
 

@@ -28,7 +28,7 @@ public class Asteroid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer.sprite = sprites[Random.Range(0,sprites.Length)];
+        //spriteRenderer.sprite = sprites[Random.Range(0,sprites.Length)];
 
         this.transform.eulerAngles = new Vector3(0.0f, 0.0f, Random.value * 360.0f);
         this.transform.localScale = Vector3.one * this.size;
