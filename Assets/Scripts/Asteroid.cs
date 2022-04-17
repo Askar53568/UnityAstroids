@@ -8,12 +8,12 @@ public class Asteroid : MonoBehaviour
 
     public Sprite[] sprites;
 
-    public float size = 1.0f;
+    public float size = 200.0f;
 
-    public float minSize = 0.5f;
-    public float maxSize = 1.5f;
+    public float minSize = 500.5f;
+    public float maxSize = 2000.5f;
 
-    public float speed = 3000.0f;
+    public float speed = 30.0f;
 
     public float maxLifetime = 30.0f;
 
@@ -28,12 +28,15 @@ public class Asteroid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //spriteRenderer.sprite = sprites[Random.Range(0,sprites.Length)];
+        spriteRenderer.sprite = sprites[Random.Range(0,sprites.Length)];
 
+        //Rotate the sprite a random angle to make all asteroids look different
         this.transform.eulerAngles = new Vector3(0.0f, 0.0f, Random.value * 360.0f);
+        //Change the scale of the spawned asteroid instead of the size
+        //If the size is changed, then the mass is changed which will affect other physical properties
         this.transform.localScale = Vector3.one * this.size;
-
-        asteroid.mass = this.size;
+        //the larger the size the larger the mass
+        asteroid.mass = this.size * 2.0f;
         
     }
 

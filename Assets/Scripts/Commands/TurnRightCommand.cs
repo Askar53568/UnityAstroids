@@ -23,13 +23,4 @@ public class TurnRightCommand: Command{
         playerBody.AddTorque(turnDirection * currentPlayer.turnSpeed);
     }
 
-
-    //  if(turnDirection != 0.0f)
-    //     {
-    //         rigidBody.AddTorque(turnDirection * this.turnSpeed);
-    //         print("turning");
-    //     }
-    // else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
-    //         turnDirection = -1.0f;
-    //     }
 }

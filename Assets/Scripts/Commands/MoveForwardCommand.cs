@@ -18,6 +18,6 @@ public class MoveForwardCommand: Command{
     //the force is calculated as direction (Vector3) * speed (specified in the player class)
     public override void Execute()
     {
-        playerBody.AddForce(currentPlayer.transform.up * currentPlayer.thrustSpeed);
+        playerBody.AddForce(currentPlayer.transform.up * currentPlayer.thrustSpeed  );
     }
 }
