@@ -8,8 +8,8 @@ public class AsteroidSpawner : MonoBehaviour
 
     public float spawnDistance= 500.0f;
 
-    public float spawnRate = 2.0f;
-    public float trajectoryVarience = 15.0f;
+    public float spawnRate = 4.0f;
+    public float trajectoryVarience = 30.0f;
     public int spawnAmount = 1;
     // Start is called before the first frame update
     void Start()
