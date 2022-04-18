@@ -14,10 +14,6 @@ public class Player : MonoBehaviour
 
     public float thrustSpeed = 1.0f;
     public float turnSpeed = 1.0f;
-    private bool thrusting;
-    private bool moveBack;
-
-    private float turnDirection= 0.0f;
 
     private  void Awake()
     {

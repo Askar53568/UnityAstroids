@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidPre: {fileID: -9160010751467296399, guid: f6fb683c995fdf3408ca28d2c5b23f07, type: 3}
-  spawnDistance: 600
+  spawnDistance: 1000
   spawnRate: 2
   trajectoryVarience: 15
   spawnAmount: 1

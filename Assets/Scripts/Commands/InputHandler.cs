@@ -15,6 +15,15 @@ public class InputHandler : MonoBehaviour{
     private Command commandD;
     private Command commandA;
 
+    private bool inputW;
+    private bool inputA;
+    private bool inputS;
+    private bool inputD;
+    private bool inputUp;
+    private bool inputDown;
+    private bool inputLeft;
+    private bool inputRight;
+
 
     public void AssignCommand(KeyCode keyCode, Command cmd){
         if (keyCode == KeyCode.Space) spaceCommand = cmd;
@@ -34,19 +43,30 @@ public class InputHandler : MonoBehaviour{
         //Space bar mapping
         if(Input.GetKeyDown(KeyCode.Space)) spaceCommand.Execute();
 
-        //WASD keys mappings
-        if(Input.GetKey(KeyCode.W)) commandW.Execute();
-        if(Input.GetKey(KeyCode.S)) commandS.Execute();
-        if(Input.GetKey(KeyCode.A)) commandA.Execute();
-        if(Input.GetKey(KeyCode.D)) commandD.Execute();
+        //WASD mappings
+        inputW = (Input.GetKey(KeyCode.W)); 
+        inputA = (Input.GetKey(KeyCode.A)); 
+        inputS = (Input.GetKey(KeyCode.S)); 
+        inputD = (Input.GetKey(KeyCode.D)); 
 
+        //Arrow mapings
+        inputUp = (Input.GetKey(KeyCode.UpArrow)); 
+        inputDown = (Input.GetKey(KeyCode.DownArrow)); 
+        inputLeft = (Input.GetKey(KeyCode.LeftArrow)); 
+        inputRight = (Input.GetKey(KeyCode.RightArrow)); 
 
-        //Arrow keys mappings
-        if(Input.GetKey(KeyCode.UpArrow)) commandUpArrow.Execute();
-        if(Input.GetKey(KeyCode.DownArrow)) commandDownArrow.Execute();
-        if(Input.GetKey(KeyCode.RightArrow)) commandRightArrow.Execute();
-        if(Input.GetKey(KeyCode.LeftArrow)) commandLeftArrow.Execute();
+        
 
+    }
+    private void FixedUpdate() {
+        if (inputW) commandW.Execute();
+        if (inputA) commandA.Execute();
+        if (inputS) commandS.Execute();
+        if (inputD) commandD.Execute();
 
+        if (inputUp) commandUpArrow.Execute();
+        if (inputDown) commandDownArrow.Execute();
+        if (inputLeft) commandLeftArrow.Execute();
+        if (inputRight) commandRightArrow.Execute();
     }
 }

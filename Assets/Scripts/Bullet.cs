@@ -9,12 +9,6 @@ public class Bullet : MonoBehaviour
 
     public float maxLifetime = 10.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     private void Awake()
     {
         bullet = GetComponent<Rigidbody2D>();
@@ -32,9 +26,4 @@ public class Bullet : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

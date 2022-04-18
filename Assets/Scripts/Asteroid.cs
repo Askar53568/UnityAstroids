@@ -13,19 +13,20 @@ public class Asteroid : MonoBehaviour
     public float minSize = 500.5f;
     public float maxSize = 2000.5f;
 
-    public float speed = 200.0f;
+    public static float speed = 200.0f;
 
     public float maxLifetime = 30.0f;
 
     private Rigidbody2D asteroid;
+    
 
     private void Awake()
     {
+        speed = 300.0f;
         spriteRenderer = GetComponent<SpriteRenderer>();
         asteroid = GetComponent<Rigidbody2D>();
     
     }
-    // Start is called before the first frame update
     void Start()
     {
         spriteRenderer.sprite = sprites[Random.Range(0,sprites.Length)];
@@ -65,13 +66,13 @@ public class Asteroid : MonoBehaviour
         //get the position of the old asteroid
         Vector2 position = this.transform.position;
         //offset the position of the new half asteroids by a little
-        position += Random.insideUnitCircle * 30.0f;
+        position += Random.insideUnitCircle * 200.0f;
         Asteroid half = Instantiate(this, position, this.transform.rotation);
         
         //Cut the size in half
         half.size = this.size * 0.5f;
         //Give the new asteroids a random new trajectory
-        half.SetTrajectory(Random.insideUnitCircle.normalized);
-        half.GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle.normalized* speed);
-    }
+        half.SetTrajectory(Random.insideUnitCircle.normalized*500.0f); 
+        Debug.Log("half asteroid position", half);   
+        }
 }
