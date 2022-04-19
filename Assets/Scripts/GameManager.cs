@@ -35,7 +35,16 @@ public class GameManager : MonoBehaviour {
         this.explosion.transform.position = asteroid.transform.position;
         this.explosion.Play();
 
-        //TODO: increase score
+        //If an asteroid is a little bigger than minimal size add 100 points
+        if(asteroid.size < asteroid.minSize+20.0f){
+            score += 100;
+        //medium size - 50 points
+        }else if(asteroid.size < 100.0f){
+            score+= 50;
+        //big size - 25 points
+        }else{
+            score +=25;
+        }
     }
     
 
