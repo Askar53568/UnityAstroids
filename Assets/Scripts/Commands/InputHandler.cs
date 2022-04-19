@@ -25,6 +25,7 @@ public class InputHandler : MonoBehaviour{
     private bool inputRight;
 
 
+
     public void AssignCommand(KeyCode keyCode, Command cmd){
         if (keyCode == KeyCode.Space) spaceCommand = cmd;
         else if (keyCode == KeyCode.W) commandW = cmd;

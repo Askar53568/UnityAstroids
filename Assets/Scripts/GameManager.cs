@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 
 public class GameManager : MonoBehaviour {
@@ -11,6 +13,9 @@ public class GameManager : MonoBehaviour {
     public float respawnTime = 2.0f;
     //Time for which a player cannot collide with any objects in the scene
     public float respawnInvisibility = 3.0f;
+
+    public GameObject gameOverUI;
+
     //Lives of the player
     public int score { get; private set; }
     public Text scoreText;
@@ -18,9 +23,12 @@ public class GameManager : MonoBehaviour {
     public int lives { get; private set; }
     public Text livesText;
 
+    //position at the center of the screen
+    public Vector3 initialPosition = new Vector3(404f,123f,0);
+
+
     private void Start() {
-        SetLives(3);
-        SetScore(0);
+        NewGame();
     }
 
     //Account for the player death
@@ -60,7 +68,7 @@ public class GameManager : MonoBehaviour {
     public void Respawn()
     {
         //Reset the player position to be the center of the board
-        this.player.transform.position = Vector3.zero;
+        this.player.transform.position = initialPosition;
         //Re-activate the player game object
         this.player.gameObject.SetActive(true);
         //Change the layer of the player object to Respawn which will ignore all collisions
@@ -75,12 +83,36 @@ public class GameManager : MonoBehaviour {
         this.player.gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
+    //Enable the Game Over UI
     private void GameOver()
     {
-        SetScore(0);
-        SetLives(3);
+        gameOverUI.SetActive(true);
+    }
 
-        Invoke(nameof(Respawn), this.respawnTime);
+    //Load the Main Menu Scene
+    public void BackToMainMenu(){
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitGame ()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
+
+    public void NewGame()
+    {
+        Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
+
+        for (int i = 0; i < asteroids.Length; i++) {
+            Destroy(asteroids[i].gameObject);
+        }
+
+        gameOverUI.SetActive(false);
+
+        SetScore(0);
+        SetLives(1);
+        Respawn();
     }
 
     private void SetScore(int score)

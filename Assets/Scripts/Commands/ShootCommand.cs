@@ -1,7 +1,6 @@
 using UnityEngine;
 public class ShootCommand: Command{
 
-    private Bullet shootBullet;
     private Player player;
 
     //Pass the entity to the base class
