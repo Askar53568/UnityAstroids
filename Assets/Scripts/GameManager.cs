@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
         this.explosion.Play();
         //Decrement the amount of lives
         this.lives--;
-        if (this.lives < 0){
+        if (this.lives <= 0){
             GameOver();
         }else{
             Invoke(nameof(Respawn), this.respawnTime);
@@ -69,6 +69,9 @@ public class GameManager : MonoBehaviour {
 
     private void GameOver()
     {
-        //TODO
+        this.lives = 3;
+        this.score = 0;
+
+        Invoke(nameof(Respawn), this.respawnTime);
     }
 }
