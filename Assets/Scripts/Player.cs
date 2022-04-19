@@ -25,10 +25,14 @@ public class Player : MonoBehaviour
     {
         handler.AssignCommand(KeyCode.Space, new ShootCommand(this));
         handler.AssignCommand(KeyCode.W, new MoveForwardCommand(this,rigidBody));
-        handler.AssignCommand(KeyCode.UpArrow, new MoveForwardCommand(this, rigidBody));
         handler.AssignCommand(KeyCode.S, new MoveBackCommand(this, rigidBody));
         handler.AssignCommand(KeyCode.D, new TurnRightCommand(this, rigidBody));
         handler.AssignCommand(KeyCode.A, new TurnLeftCommand(this,rigidBody));
+
+        handler.AssignCommand(KeyCode.UpArrow, new MoveForwardCommand(this, rigidBody));
+        handler.AssignCommand(KeyCode.DownArrow, new MoveBackCommand(this, rigidBody));
+        handler.AssignCommand(KeyCode.RightArrow, new TurnRightCommand(this, rigidBody));
+        handler.AssignCommand(KeyCode.LeftArrow, new TurnLeftCommand(this, rigidBody));
     }
 
     //Account for the player's collision with the asteroid

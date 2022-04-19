@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour {
@@ -11,9 +12,16 @@ public class GameManager : MonoBehaviour {
     //Time for which a player cannot collide with any objects in the scene
     public float respawnInvisibility = 3.0f;
     //Lives of the player
-    public int lives = 3;
-    //Score
-    public int score = 0;
+    public int score { get; private set; }
+    public Text scoreText;
+
+    public int lives { get; private set; }
+    public Text livesText;
+
+    private void Start() {
+        SetLives(3);
+        SetScore(0);
+    }
 
     //Account for the player death
     public void PlayerDied(){
@@ -21,7 +29,7 @@ public class GameManager : MonoBehaviour {
         this.explosion.transform.position = this.player.transform.position;
         this.explosion.Play();
         //Decrement the amount of lives
-        this.lives--;
+        SetLives(lives - 1);
         if (this.lives <= 0){
             GameOver();
         }else{
@@ -35,15 +43,15 @@ public class GameManager : MonoBehaviour {
         this.explosion.transform.position = asteroid.transform.position;
         this.explosion.Play();
 
-        //If an asteroid is a little bigger than minimal size add 100 points
+        //small - 100 points
         if(asteroid.size < asteroid.minSize+20.0f){
-            score += 100;
+            SetScore(score+100);
         //medium size - 50 points
         }else if(asteroid.size < 125.0f){
-            score+= 50;
-        //big size - 25 points
+             SetScore(score + 50);
+        //large size - 25 points
         }else{
-            score +=25;
+            SetScore(score + 25);
         }
     }
     
@@ -69,9 +77,21 @@ public class GameManager : MonoBehaviour {
 
     private void GameOver()
     {
-        this.lives = 3;
-        this.score = 0;
+        SetScore(0);
+        SetLives(3);
 
         Invoke(nameof(Respawn), this.respawnTime);
+    }
+
+    private void SetScore(int score)
+    {
+        this.score = score;
+        scoreText.text = score.ToString();
+    }
+
+    private void SetLives(int lives)
+    {
+        this.lives = lives;
+        livesText.text = lives.ToString();
     }
 }
