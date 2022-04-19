@@ -55,6 +55,8 @@ public class Asteroid : MonoBehaviour
                 CreateSplit();
                 CreateSplit();
             }
+            //Find the Game manager object in the scene if it exists and execute the asteroidDestroyed method
+            FindObjectOfType<GameManager>().AsteroidDestroyed(this);
             //regardless of the condition destroy the old asteroid
             Destroy(this.gameObject);
         }

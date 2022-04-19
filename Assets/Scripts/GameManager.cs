@@ -4,15 +4,23 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     //Instance of the player
     public Player player;
+    //Reference to the explosion effect
+    public ParticleSystem explosion;
     //Time after which the player can respawn
     public float respawnTime = 2.0f;
     //Time for which a player cannot collide with any objects in the scene
     public float respawnInvisibility = 3.0f;
-
+    //Lives of the player
     public int lives = 3;
+    //Score
+    public int score = 0;
 
     //Account for the player death
     public void PlayerDied(){
+        //Play the explosion effect at the position of the player's death
+        this.explosion.transform.position = this.player.transform.position;
+        this.explosion.Play();
+        //Decrement the amount of lives
         this.lives--;
         if (this.lives < 0){
             GameOver();
@@ -20,6 +28,16 @@ public class GameManager : MonoBehaviour {
             Invoke(nameof(Respawn), this.respawnTime);
         }
     }
+
+    public void AsteroidDestroyed(Asteroid asteroid)
+    {
+        //Play the explosion effect at the position of the asteroid's death
+        this.explosion.transform.position = asteroid.transform.position;
+        this.explosion.Play();
+
+        //TODO: increase score
+    }
+    
 
     //Respawn the player when they have lives left
     public void Respawn()
