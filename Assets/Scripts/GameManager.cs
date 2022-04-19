@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour {
         if(asteroid.size < asteroid.minSize+20.0f){
             score += 100;
         //medium size - 50 points
-        }else if(asteroid.size < 100.0f){
+        }else if(asteroid.size < 125.0f){
             score+= 50;
         //big size - 25 points
         }else{
