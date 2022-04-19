@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public Bullet bulletPrefab;
 
     private InputHandler handler;
-    private ShootCommand shoot;
 
     public float thrustSpeed = 1.0f;
     public float turnSpeed = 1.0f;
@@ -32,16 +31,18 @@ public class Player : MonoBehaviour
         handler.AssignCommand(KeyCode.A, new TurnLeftCommand(this,rigidBody));
     }
 
-    // Gets called every frame the game is running
-    private void Update()
+    //Account for the player's collision with the asteroid
+    private  void OnCollisionEnter2D(Collision2D collision)
     {
-
-
-    }
-
-    private void FixedUpdate()
-    {
-
+        //When the player collides with an asteroid
+        if (collision.gameObject.tag == "Asteroid"){
+            //Stop all the player movement
+            rigidBody.velocity = Vector3.zero;
+            //Stop all rotation
+            rigidBody.angularVelocity= 0.0f;
+            //Turn off the game object entirely until the player respawns
+            this.gameObject.SetActive(false);
+        }
     }
 
 
