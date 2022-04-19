@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9160010751467296399}
   m_Layer: 8
   m_Name: Asteroid
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,5 +152,4 @@ MonoBehaviour:
   size: 100
   minSize: 50
   maxSize: 150
-  speed: 300
   maxLifetime: 30

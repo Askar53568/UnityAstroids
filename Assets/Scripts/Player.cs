@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
             rigidBody.angularVelocity= 0.0f;
             //Turn off the game object entirely until the player respawns
             this.gameObject.SetActive(false);
+
+            FindObjectOfType<GameManager>().PlayerDied();
         }
     }
 
