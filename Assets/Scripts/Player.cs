@@ -20,11 +20,6 @@ public class Player : MonoBehaviour
         handler = GetComponent<InputHandler>();
 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        handler.AssignCommand("w","s","a","d","space");
-    }
 
     //Account for the player's collision with the asteroid
     private  void OnCollisionEnter2D(Collision2D collision)

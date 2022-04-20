@@ -27,17 +27,19 @@ public class InputHandler : MonoBehaviour{
     private string inputRight = "d";
     private string inputShoot = "space";
 
+    private void Start() {
+        back = new MoveBackCommand(this.gameObject.GetComponent<Player>());
+        forward = new MoveForwardCommand(this.gameObject.GetComponent<Player>());
+        turnLeft = new TurnLeftCommand(this.gameObject.GetComponent<Player>());
+        turnRight = new TurnRightCommand(this.gameObject.GetComponent<Player>());
+        shoot = new ShootCommand(this.gameObject.GetComponent<Player>());
+    }
     public void AssignCommand(string inputForward, string inputBack, string inputLeft, string inputRight, string inputShoot){
         this.inputForward = inputForward;
         this.inputBack = inputBack;
         this.inputLeft = inputLeft;
         this.inputRight = inputRight;
         this.inputShoot = inputShoot;
-        back = new MoveBackCommand(this.gameObject.GetComponent<Player>());
-        forward = new MoveForwardCommand(this.gameObject.GetComponent<Player>());
-        turnLeft = new TurnLeftCommand(this.gameObject.GetComponent<Player>());
-        turnRight = new TurnRightCommand(this.gameObject.GetComponent<Player>());
-        shoot = new ShootCommand(this.gameObject.GetComponent<Player>());
     }
 
 
