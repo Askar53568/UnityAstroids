@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     public float respawnInvisibility = 3.0f;
 
     public GameObject gameOverUI;
+    public GameObject gamePausedUI;
 
     //Lives of the player
     public int score { get; private set; }
@@ -29,6 +30,10 @@ public class GameManager : MonoBehaviour {
 
     private void Start() {
         NewGame();
+    }
+
+    private void Update() {
+        if(Input.GetKey(KeyCode.Return)) gamePausedUI.SetActive(true);
     }
 
     //Account for the player death
@@ -109,6 +114,7 @@ public class GameManager : MonoBehaviour {
         }
 
         gameOverUI.SetActive(false);
+        gamePausedUI.SetActive(false);
 
         SetScore(0);
         SetLives(1);
