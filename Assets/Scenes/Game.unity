@@ -1172,7 +1172,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1703656723}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: NewGame
+        m_MethodName: SaveGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6615,7 +6615,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1703656723}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: BackToMainMenu
+        m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
