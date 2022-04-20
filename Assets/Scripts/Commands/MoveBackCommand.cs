@@ -6,18 +6,15 @@ public class MoveBackCommand: Command{
 
     //Player
     private Player currentPlayer;
-    //Rigid body of the player (physical object)
-    private Rigidbody2D playerBody;
 
     //Pass the entity to the base class
-    public MoveBackCommand(Player entity, Rigidbody2D body) : base(entity){
-        playerBody = body;
+    public MoveBackCommand(Player entity) : base(entity){
         currentPlayer = entity;
     }
     //Add Force to the passed rigid body of the player
     //the force is calculated as direction (Vector3) * speed (specified in the player class)
     public override void Execute()
     {
-        playerBody.AddForce(-(currentPlayer.transform.up) * currentPlayer.thrustSpeed);
+        currentPlayer.GetComponent<Rigidbody2D>().AddForce(-(currentPlayer.transform.up) * currentPlayer.thrustSpeed);
     }
 }

@@ -5,69 +5,55 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class InputHandler : MonoBehaviour{
-    private Command spaceCommand;
-    private Command commandW;
-    private Command commandUpArrow;
-    private Command commandDownArrow;
-    private Command commandRightArrow;
-    private Command commandLeftArrow;
-    private Command commandS;
-    private Command commandD;
-    private Command commandA;
+    
+    private bool movingForward;
+    private bool movingBack;
+    private bool turningLeft;
+    private bool turningRight;
+    private bool shooting;
 
-    private bool inputW;
-    private bool inputA;
-    private bool inputS;
-    private bool inputD;
-    private bool inputUp;
-    private bool inputDown;
-    private bool inputLeft;
-    private bool inputRight;
+    private MoveBackCommand back;
+    private MoveForwardCommand forward;
+    private TurnLeftCommand turnLeft;
+    private TurnRightCommand turnRight;
+
+    private ShootCommand shoot;
 
 
 
-    public void AssignCommand(KeyCode keyCode, Command cmd){
-        if (keyCode == KeyCode.Space) spaceCommand = cmd;
-        else if (keyCode == KeyCode.W) commandW = cmd;
-        else if (keyCode == KeyCode.A) commandA = cmd;
-        else if (keyCode == KeyCode.D) commandD = cmd;
-        else if (keyCode == KeyCode.S) commandS = cmd;
-        else if (keyCode == KeyCode.UpArrow) commandUpArrow = cmd;
-        else if (keyCode == KeyCode.DownArrow) commandDownArrow = cmd;
-        else if (keyCode == KeyCode.RightArrow) commandRightArrow = cmd;
-        else if (keyCode == KeyCode.LeftArrow) commandLeftArrow = cmd;
+    private string inputForward = "w";
+    private string inputBack = "s";
+    private string inputLeft = "a";
+    private string inputRight = "d";
+    private string inputShoot = "space";
+
+    public void AssignCommand(string inputForward, string inputBack, string inputLeft, string inputRight, string inputShoot){
+        this.inputForward = inputForward;
+        this.inputBack = inputBack;
+        this.inputLeft = inputLeft;
+        this.inputRight = inputRight;
+        this.inputShoot = inputShoot;
+        back = new MoveBackCommand(this.gameObject.GetComponent<Player>());
+        forward = new MoveForwardCommand(this.gameObject.GetComponent<Player>());
+        turnLeft = new TurnLeftCommand(this.gameObject.GetComponent<Player>());
+        turnRight = new TurnRightCommand(this.gameObject.GetComponent<Player>());
+        shoot = new ShootCommand(this.gameObject.GetComponent<Player>());
     }
 
 
     void Update()
     {
-        //Space bar mapping
-        if(Input.GetKeyDown(KeyCode.Space)) spaceCommand.Execute();
-
-        //WASD mappings
-        inputW = (Input.GetKey(KeyCode.W)); 
-        inputA = (Input.GetKey(KeyCode.A)); 
-        inputS = (Input.GetKey(KeyCode.S)); 
-        inputD = (Input.GetKey(KeyCode.D)); 
-
-        //Arrow mapings
-        inputUp = (Input.GetKey(KeyCode.UpArrow)); 
-        inputDown = (Input.GetKey(KeyCode.DownArrow)); 
-        inputLeft = (Input.GetKey(KeyCode.LeftArrow)); 
-        inputRight = (Input.GetKey(KeyCode.RightArrow)); 
-
+        movingForward = (Input.GetKey(inputForward)); 
+        movingBack = (Input.GetKey(inputBack)); 
+        turningLeft = (Input.GetKey(inputLeft)); 
+        turningRight = (Input.GetKey(inputRight)); 
+        if (Input.GetKeyDown(inputShoot)) shoot.Execute();
         
-
     }
     private void FixedUpdate() {
-        if (inputW) commandW.Execute();
-        if (inputA) commandA.Execute();
-        if (inputS) commandS.Execute();
-        if (inputD) commandD.Execute();
-
-        if (inputUp) commandUpArrow.Execute();
-        if (inputDown) commandDownArrow.Execute();
-        if (inputLeft) commandLeftArrow.Execute();
-        if (inputRight) commandRightArrow.Execute();
+        if (movingForward) forward.Execute();
+        if (movingBack) back.Execute();
+        if (turningLeft) turnLeft.Execute();
+        if (turningRight) turnRight.Execute();
     }
 }

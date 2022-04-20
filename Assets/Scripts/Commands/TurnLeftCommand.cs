@@ -12,15 +12,14 @@ public class TurnLeftCommand: Command{
     float turnDirection = 1.0f;
 
     //Pass the entity to the base class
-    public TurnLeftCommand(Player entity, Rigidbody2D body) : base(entity){
-        playerBody = body;
+    public TurnLeftCommand(Player entity) : base(entity){
         currentPlayer = entity;
     }
     //Add torque to the passed rigid body of the player
     //the torque is calculated as direction (Vector3) * speed (specified in the player class)
     public override void Execute()
     {
-        playerBody.AddTorque(turnDirection * currentPlayer.turnSpeed);
+        currentPlayer.GetComponent<Rigidbody2D>().AddTorque(turnDirection * currentPlayer.turnSpeed);
     }
 
 }
