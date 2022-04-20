@@ -115,6 +115,25 @@ public class GameManager : MonoBehaviour {
         Respawn();
     }
 
+    public void SaveGame(){
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadGame(){
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        SetLives(data.lives);
+        SetScore(data.score);
+
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+
+        this.player.transform.position =position;
+
+    }
+
     private void SetScore(int score)
     {
         this.score = score;
