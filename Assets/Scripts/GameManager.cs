@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void SaveGame(){
-        SaveSystem.SavePlayer(this);
+        SaveSystem.SavePlayer(this, player);
     }
 
     public void LoadGame(){
@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour {
         position.z = data.position[2];
 
         this.player.transform.position =position;
+        gamePausedUI.SetActive(false);
 
     }
 
