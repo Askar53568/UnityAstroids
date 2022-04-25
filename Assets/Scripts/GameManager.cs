@@ -7,12 +7,16 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     //Instance of the player
     public Player player;
+
+    public AsteroidSpawner spawner;
     //Reference to the explosion effect
     public ParticleSystem explosion;
     //Time after which the player can respawn
     public float respawnTime = 2.0f;
     //Time for which a player cannot collide with any objects in the scene
     public float respawnInvisibility = 3.0f;
+
+    public bool paused = false;
 
     public GameObject gameOverUI;
     public GameObject gamePausedUI;
@@ -33,7 +37,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update() {
-        if(Input.GetKey(KeyCode.Return)) gamePausedUI.SetActive(true);
+        if(Input.GetKeyDown(KeyCode.Return)) Pause();
     }
 
     //Account for the player death
@@ -105,6 +109,25 @@ public class GameManager : MonoBehaviour {
         Application.Quit();
     }
 
+    public void Pause(){
+        paused = !paused;
+        if (paused){
+            Time.timeScale = 0;
+            gamePausedUI.SetActive(true);
+        } else{
+            Time.timeScale = 1;
+            gamePausedUI.SetActive(false);
+        }
+    }
+
+    public void ClearAsteroids(){
+        Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
+
+        for (int i = 0; i < asteroids.Length; i++) {
+            Destroy(asteroids[i].gameObject);
+        }
+    }
+
     public void NewGame()
     {
         Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
@@ -123,9 +146,32 @@ public class GameManager : MonoBehaviour {
 
     public void SaveGame(){
         SaveSystem.SavePlayer(this, player);
+        Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
+
+        SaveSystem.SaveAsteroids(asteroids);
+        
+    }
+    
+    public void LoadAsteroidsFromFile(){
+        ClearAsteroids();
+        Asteroids asteroidsData = SaveSystem.LoadAsteroids();
+        AsteroidData [] asteroids = asteroidsData.asteroids;
+        for (int i = 0; i < asteroids.Length; i++) {
+            Vector3 position;
+            position.x = asteroids[i].position[0];
+            position.y = asteroids[i].position[1];
+            position.z = asteroids[i].position[2];
+            
+            Asteroid asteroid = Instantiate(this.spawner.asteroidPre, position, this.spawner.rotation);
+            asteroid.size = asteroids[i].size;
+            asteroid.SetTrajectory(Random.insideUnitCircle.normalized*500.0f);
+        }
+
     }
 
+
     public void LoadGame(){
+        Pause();
         PlayerData data = SaveSystem.LoadPlayer();
 
         SetLives(data.lives);
@@ -137,6 +183,7 @@ public class GameManager : MonoBehaviour {
         position.z = data.position[2];
 
         this.player.transform.position =position;
+        LoadAsteroidsFromFile();
         gamePausedUI.SetActive(false);
 
     }

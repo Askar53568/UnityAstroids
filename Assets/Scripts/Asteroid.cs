@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Asteroid : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
@@ -9,6 +10,7 @@ public class Asteroid : MonoBehaviour
     public Sprite[] sprites;
 
     public float size = 100.0f;
+    public int sprite = 1;
 
     public float minSize = 50.0f;
     public float maxSize = 150.0f;
@@ -29,7 +31,9 @@ public class Asteroid : MonoBehaviour
     }
     void Start()
     {
-        spriteRenderer.sprite = sprites[Random.Range(0,sprites.Length)];
+        
+        this.sprite = Random.Range(0,sprites.Length);
+        spriteRenderer.sprite = sprites[this.sprite];
         //Rotate the sprite a random angle to make all asteroids look different
         this.transform.eulerAngles = new Vector3(0.0f, 0.0f, Random.value * 360.0f);
         //Change the scale of the spawned asteroid instead of the size

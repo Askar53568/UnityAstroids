@@ -1016,6 +1016,9 @@ MonoBehaviour:
   spawnRate: 2
   trajectoryVarience: 15
   spawnAmount: 1
+  spawnPoint: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0, w: 0}
+  spawnDirection: {x: 0, y: 0, z: 0}
 --- !u!4 &925826948
 Transform:
   m_ObjectHideFlags: 0
@@ -6429,9 +6432,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 876629499}
+  spawner: {fileID: 925826947}
   explosion: {fileID: 1597874636}
   respawnTime: 2
   respawnInvisibility: 3
+  paused: 0
   gameOverUI: {fileID: 1431756012}
   gamePausedUI: {fileID: 1326028043}
   scoreText: {fileID: 737277007}
