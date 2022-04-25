@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     //Instance of the player
     public Player player;
+    public Asteroid asteroidPre;
 
     public AsteroidSpawner spawner;
     //Reference to the explosion effect
@@ -162,9 +163,14 @@ public class GameManager : MonoBehaviour {
             position.y = asteroids[i].position[1];
             position.z = asteroids[i].position[2];
             
-            Asteroid asteroid = Instantiate(this.spawner.asteroidPre, position, this.spawner.rotation);
+            Quaternion rotation;
+            rotation.x = asteroids[i].rotation[0];
+            rotation.y = asteroids[i].rotation[1];
+            rotation.z = asteroids[i].rotation[2];
+            rotation.w = asteroids[i].rotation[3];
+
+            Asteroid asteroid = Instantiate(spawner.asteroidPre, position, rotation);
             asteroid.size = asteroids[i].size;
-            asteroid.SetTrajectory(Random.insideUnitCircle.normalized*500.0f);
         }
 
     }

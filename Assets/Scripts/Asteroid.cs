@@ -31,11 +31,7 @@ public class Asteroid : MonoBehaviour
     }
     void Start()
     {
-        
-        this.sprite = Random.Range(0,sprites.Length);
         spriteRenderer.sprite = sprites[this.sprite];
-        //Rotate the sprite a random angle to make all asteroids look different
-        this.transform.eulerAngles = new Vector3(0.0f, 0.0f, Random.value * 360.0f);
         //Change the scale of the spawned asteroid instead of the size
         //If the size is changed, then the mass is changed which will affect other physical properties
         this.transform.localScale = Vector3.one * this.size;
