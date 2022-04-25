@@ -76,7 +76,8 @@ public class Asteroid : MonoBehaviour
         //Cut the size in half
         half.size = this.size * 0.5f;
         //Give the new asteroids a random new trajectory
-        half.SetTrajectory(Random.insideUnitCircle.normalized*500.0f); 
+        half.trajectory = Random.insideUnitCircle.normalized*1000.0f;
+        half.SetTrajectory(half.trajectory); 
         Debug.Log("half asteroid position", half);   
         }
 }

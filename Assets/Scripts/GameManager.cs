@@ -141,27 +141,42 @@ public class GameManager : MonoBehaviour {
         gamePausedUI.SetActive(false);
 
         SetScore(0);
-        SetLives(1);
+        SetLives(3);
         Respawn();
     }
 
     public void SaveGame(){
-        SaveSystem.SavePlayer(this, player);
         Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
-
-        SaveSystem.SaveAsteroids(asteroids);
-        
+        SaveSystem.SaveGame(asteroids, this, player);
     }
     
-    public void LoadAsteroidsFromFile(){
+
+    public void LoadGame(){
+        //Unpause the game
+        Pause();
+        //Load Player
+        PlayerData data = SaveSystem.LoadGame().playerData;
+
+        SetLives(data.lives);
+        SetScore(data.score);
+
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+
+        this.player.transform.position = position;
+
+        //Clear asteroids if any
         ClearAsteroids();
-        Asteroids asteroidsData = SaveSystem.LoadAsteroids();
+        //Load existing asteroid data
+        Asteroids asteroidsData = SaveSystem.LoadGame().asteroidsData;
         AsteroidData [] asteroids = asteroidsData.asteroids;
         for (int i = 0; i < asteroids.Length; i++) {
-            Vector3 position;
-            position.x = asteroids[i].position[0];
-            position.y = asteroids[i].position[1];
-            position.z = asteroids[i].position[2];
+            Vector3 positionAsteroid;
+            positionAsteroid.x = asteroids[i].position[0];
+            positionAsteroid.y = asteroids[i].position[1];
+            positionAsteroid.z = asteroids[i].position[2];
             
             Quaternion rotation;
             rotation.x = asteroids[i].rotation[0];
@@ -173,33 +188,15 @@ public class GameManager : MonoBehaviour {
             trajectory.x = asteroids[i].trajectory[0];
             trajectory.y = asteroids[i].trajectory[1];
 
-            Asteroid asteroid = Instantiate(spawner.asteroidPre, position, rotation);
+            Asteroid asteroid = Instantiate(spawner.asteroidPre, positionAsteroid, rotation);
             asteroid.size = asteroids[i].size;
             asteroid.trajectory = trajectory;
             asteroid.SetTrajectory(trajectory);
         }
-
-    }
-
-
-    public void LoadGame(){
-        Pause();
-        PlayerData data = SaveSystem.LoadPlayer();
-
-        SetLives(data.lives);
-        SetScore(data.score);
-
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-
-        this.player.transform.position =position;
-        LoadAsteroidsFromFile();
+        //Remove the paused game UI
         gamePausedUI.SetActive(false);
-
     }
-
+    
     private void SetScore(int score)
     {
         this.score = score;

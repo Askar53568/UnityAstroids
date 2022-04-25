@@ -33,6 +33,45 @@ public static class SaveSystem{
         stream.Close();
     }
 
+    public static void SaveGame(Asteroid [] asteroids, GameManager manager,  Player player){
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/game.fun";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        AsteroidData [] asteroidsDataList = new AsteroidData [asteroids.Length];
+        PlayerData playerData = new PlayerData(manager, player);
+
+        for (int i = 0; i < asteroids.Length; i++) {
+            AsteroidData data = new AsteroidData(asteroids[i]);
+            asteroidsDataList[i] = data;
+        }
+        Asteroids asteroidsList = new Asteroids(asteroidsDataList);
+        GameSave game = new GameSave(asteroidsList, playerData);
+        formatter.Serialize(stream, game);
+        stream.Close();
+    }
+
+    public static GameSave LoadGame(){
+        string path = Application.persistentDataPath + "/game.fun";
+        if(File.Exists(path)){
+            //open the binary formatter
+            BinaryFormatter formatter = new BinaryFormatter();
+            //open the file stream on already existing save file
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            //read from the stream, change it to readable format and save it 
+            GameSave data = formatter.Deserialize(stream) as GameSave;
+            stream.Close();
+            //Return the data in the readable format
+            return data;
+        }else{
+           //Log error
+           Debug.LogError("Save file not found in"+path); 
+           return null;
+        }
+
+    }
+
 
 
 
@@ -55,6 +94,7 @@ public static class SaveSystem{
            return null;
         }
     }
+
 
     public static Asteroids LoadAsteroids(){
         string path = Application.persistentDataPath + "/asteroids.fun";
