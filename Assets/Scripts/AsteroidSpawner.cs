@@ -11,6 +11,7 @@ public class AsteroidSpawner : MonoBehaviour
     public float spawnRate = 4.0f;
     public float trajectoryVarience = 30.0f;
     public int spawnAmount = 1;
+    Vector2 trajectory;
 
     // Start is called before the first frame update
     void Start()
@@ -35,13 +36,15 @@ public class AsteroidSpawner : MonoBehaviour
             Quaternion rotation = Quaternion.AngleAxis(varience, Vector3.forward);
 
             Asteroid asteroid = Instantiate(this.asteroidPre, spawnPoint, rotation);
-            //asteroid.spawnDirection = spawnDirection;
+            //Give the asteroid random size
             asteroid.size = Random.Range(asteroid.minSize, asteroid.maxSize);
+            //Give the asteroid random sprite
             asteroid.sprite = Random.Range(0,4);
             //Rotate the sprite a random angle to make all asteroids look different
             asteroid.transform.eulerAngles = new Vector3(0.0f, 0.0f, Random.value * 360.0f);
             //Set trajectory to always point at the center where the player is
-            asteroid.SetTrajectory(rotation * -spawnDirection);
+            asteroid.trajectory = rotation * -spawnDirection;
+            asteroid.SetTrajectory(asteroid.trajectory);
             
         }
     }

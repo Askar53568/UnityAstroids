@@ -11,6 +11,7 @@ using UnityEngine;
     public float size;
     public int sprite;
     public float[] rotation;
+    public float[] trajectory;
 
     public AsteroidData(Asteroid asteroid){
 
@@ -26,6 +27,10 @@ using UnityEngine;
         rotation[1] = asteroid.transform.rotation.y;
         rotation[2] = asteroid.transform.rotation.z;
         rotation[3] = asteroid.transform.rotation.w;
+
+        trajectory = new float[2];
+        trajectory[0]= asteroid.trajectory.x;
+        trajectory[1]= asteroid.trajectory.y;
 
 
         }

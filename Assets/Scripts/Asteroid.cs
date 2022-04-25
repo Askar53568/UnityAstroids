@@ -20,6 +20,8 @@ public class Asteroid : MonoBehaviour
     public float maxLifetime = 30.0f;
 
     private Rigidbody2D asteroid;
+
+    public Vector2 trajectory;
     
 
     private void Awake()

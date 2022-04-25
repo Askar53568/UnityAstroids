@@ -169,8 +169,14 @@ public class GameManager : MonoBehaviour {
             rotation.z = asteroids[i].rotation[2];
             rotation.w = asteroids[i].rotation[3];
 
+            Vector2 trajectory;
+            trajectory.x = asteroids[i].trajectory[0];
+            trajectory.y = asteroids[i].trajectory[1];
+
             Asteroid asteroid = Instantiate(spawner.asteroidPre, position, rotation);
             asteroid.size = asteroids[i].size;
+            asteroid.trajectory = trajectory;
+            asteroid.SetTrajectory(trajectory);
         }
 
     }
