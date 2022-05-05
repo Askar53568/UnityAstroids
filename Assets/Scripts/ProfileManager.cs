@@ -9,6 +9,10 @@ public static class ProfileManager{
 
     public static Profile currentProfile {get; private set;}
 
+    public static void SaveProfile(Profile profile){
+        SaveSystem.SaveProfiles(profiles.ToArray());
+    }
+
 
     public static void AddProfile(Profile profile){
         if(!profiles.Contains(profile)) {

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Profile {
     public string profileId;
     public string username;
+    public int score = 0;
 
     public Profile(string profileId, string username){
         this.profileId = profileId;
