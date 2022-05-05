@@ -141,13 +141,13 @@ public class GameManager : MonoBehaviour {
         gamePausedUI.SetActive(false);
 
         SetScore(0);
-        SetLives(3);
+        SetLives(1);
         Respawn();
     }
 
     public void SaveGame(){
         Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
-        SaveSystem.SaveGame(asteroids, this, player);
+        SaveSystem.SaveGame(asteroids, this, player, ProfileSingleton.instance.profileId);
     }
     
 
@@ -155,7 +155,8 @@ public class GameManager : MonoBehaviour {
         //Unpause the game
         Pause();
         //Load Player
-        PlayerData data = SaveSystem.LoadGame().playerData;
+        GameSave saveFile = SaveSystem.LoadGame(ProfileSingleton.instance.profileId);
+        PlayerData data = saveFile.playerData;
 
         SetLives(data.lives);
         SetScore(data.score);
@@ -170,7 +171,7 @@ public class GameManager : MonoBehaviour {
         //Clear asteroids if any
         ClearAsteroids();
         //Load existing asteroid data
-        Asteroids asteroidsData = SaveSystem.LoadGame().asteroidsData;
+        Asteroids asteroidsData = saveFile.asteroidsData;
         AsteroidData [] asteroids = asteroidsData.asteroids;
         for (int i = 0; i < asteroids.Length; i++) {
             Vector3 positionAsteroid;

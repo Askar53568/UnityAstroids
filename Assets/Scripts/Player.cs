@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         handler = GetComponent<InputHandler>();
-
+        Debug.LogError(ProfileSingleton.instance.profileId);
     }
 
     //Account for the player's collision with the asteroid
