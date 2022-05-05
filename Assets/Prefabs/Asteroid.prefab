@@ -149,7 +149,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: da1e750b6be44ac4f8759ac9a1e40191, type: 3}
   - {fileID: 21300000, guid: 981203dae2c82084b8e93f19d0cf16bd, type: 3}
   - {fileID: 21300000, guid: 1f421be4ab96e8047b00df2bd7fbea48, type: 3}
+  powerUpPre: {fileID: -3343503869530713310, guid: a9517e9dbfc9f4c47b98cae60c6023bc, type: 3}
   size: 100
+  sprite: 1
   minSize: 50
   maxSize: 150
   maxLifetime: 30
+  trajectory: {x: 0, y: 0}
