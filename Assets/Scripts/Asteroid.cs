@@ -8,7 +8,6 @@ public class Asteroid : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public Sprite[] sprites;
-
     public PowerUp powerUpPre;
 
     public float size = 100.0f;
@@ -91,8 +90,17 @@ public class Asteroid : MonoBehaviour
         Vector3 position = this.transform.position;
         Quaternion rotation = new Quaternion();
         PowerUp powerUp = Instantiate(powerUpPre, position, rotation);
-
-        SpeedPowerUp sp = new SpeedPowerUp(50,50);
-        powerUp.powerUpEffect = sp;
+        int rnd = Random.Range(0,2);
+        switch (rnd)
+        {
+            case 0:
+            powerUp.powerUpEffect = new SpeedPowerUp(50,50);
+            powerUp.spriteNum = 0;
+            break;
+            case 1:
+            powerUp.powerUpEffect = new TripleShotPowerUp();
+            powerUp.spriteNum = 1;
+            break;
+        }
     }
 }

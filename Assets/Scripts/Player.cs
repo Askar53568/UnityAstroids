@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float turnSpeed = 1.0f;
 
     public Coroutine speedInc;
+    public Coroutine tripleShot;
 
     private  void Awake()
     {

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 21335318941001834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 34bff0c117c427d499b83d3e204e5e8e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7df797c30f5269b49bab7f212331c844, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,3 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpEffect: {fileID: 11400000, guid: 48ebda23a40d7c841ae3e80ede299ce7, type: 2}
+  spriteRenderer: {fileID: 0}
+  sprites:
+  - {fileID: 21300000, guid: 34bff0c117c427d499b83d3e204e5e8e, type: 3}
+  - {fileID: 21300000, guid: 7d7c4fa383c36cf468796cce2c391a04, type: 3}
+  spriteNum: 0
