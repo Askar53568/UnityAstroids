@@ -9,6 +9,8 @@ public class Asteroid : MonoBehaviour
 
     public Sprite[] sprites;
 
+    public PowerUp powerUpPre;
+
     public float size = 100.0f;
     public int sprite = 1;
 
@@ -56,6 +58,8 @@ public class Asteroid : MonoBehaviour
             if((this.size * 0.5f)>= this.minSize){
                 CreateSplit();
                 CreateSplit();
+            } else {
+                CreatePowerUp();
             }
             //Find the Game manager object in the scene if it exists and execute the asteroidDestroyed method
             FindObjectOfType<GameManager>().AsteroidDestroyed(this);
@@ -64,6 +68,7 @@ public class Asteroid : MonoBehaviour
         }
 
     }
+
     //Split big asteroids into small ones on collission
     private void CreateSplit()
     {
@@ -80,4 +85,14 @@ public class Asteroid : MonoBehaviour
         half.SetTrajectory(half.trajectory); 
         Debug.Log("half asteroid position", half);   
         }
+
+    private void CreatePowerUp()
+    {
+        Vector3 position = this.transform.position;
+        Quaternion rotation = new Quaternion();
+        PowerUp powerUp = Instantiate(powerUpPre, position, rotation);
+
+        SpeedPowerUp sp = new SpeedPowerUp(50,50);
+        powerUp.powerUpEffect = sp;
+    }
 }

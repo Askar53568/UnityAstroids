@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     public float thrustSpeed = 1.0f;
     public float turnSpeed = 1.0f;
 
+    public Coroutine speedInc;
+
     private  void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
