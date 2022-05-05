@@ -27,7 +27,7 @@ public class AddProfileToList : MonoBehaviour
         newObject.transform.SetParent(gameObject.transform, false);
         //find a game object text that is attacjed to the profile object
         newObject.transform.Find("ProfileName").GetComponent<Text>().text = profile.profileId;
-        //
+        newObject.transform.Find("ProfileScore").GetComponent<Text>().text = profile.score.ToString();
         ProfileListItem item = newObject.GetComponent<ProfileListItem>();
         item.profileId = profile.profileId;
     }

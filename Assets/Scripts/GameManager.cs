@@ -96,6 +96,10 @@ public class GameManager : MonoBehaviour {
     //Enable the Game Over UI
     private void GameOver()
     {
+        
+        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
+        profile.score = score;
+        ProfileManager.SaveProfile(profile);
         gameOverUI.SetActive(true);
     }
 
