@@ -18,6 +18,7 @@ public class AddProfileToList : MonoBehaviour
         }
     }
 
+
     public void AddItem(Profile profile)
     {
         //instantiate a profile game object from the profile refab
@@ -26,7 +27,7 @@ public class AddProfileToList : MonoBehaviour
         //whcih is the gridcontent bc the addprofiletolist is a component of the gridcontent
         newObject.transform.SetParent(gameObject.transform, false);
         //find a game object text that is attacjed to the profile object
-        newObject.transform.Find("ProfileName").GetComponent<Text>().text = profile.profileId;
+        newObject.transform.Find("ProfileName").GetComponent<Text>().text = profile.username;
         newObject.transform.Find("ProfileScore").GetComponent<Text>().text = profile.score.ToString();
         ProfileListItem item = newObject.GetComponent<ProfileListItem>();
         item.profileId = profile.profileId;
