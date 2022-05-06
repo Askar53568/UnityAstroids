@@ -21,11 +21,14 @@ public class Player : MonoBehaviour
 
     private  void Awake()
     {
+
         rigidBody = GetComponent<Rigidbody2D>();
         handler = GetComponent<InputHandler>();
         Debug.LogError(ProfileSingleton.instance.profileId);
     }
-
+    private void Start() {
+        handler.AssignCommand("w","s","a","d","space");
+    }
     //Account for the player's collision with the asteroid
     private  void OnCollisionEnter2D(Collision2D collision)
     {

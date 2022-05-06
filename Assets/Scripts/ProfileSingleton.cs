@@ -5,6 +5,11 @@ public class ProfileSingleton : MonoBehaviour {
     
 
     public string profileId {get; set;}
+    public string up {get;set;}
+    public string back {get;set;}
+    public string left {get;set;}
+    public string right {get;set;}
+    public int progress {get;set;}
 
     private void Awake() {
         if(instance){
