@@ -39,6 +39,14 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+    public void LoadButton ()
+    {
+        SceneManager.LoadScene("Game");
+    }
+    public void AchButton ()
+    {
+        SceneManager.LoadScene("Achievements");
+    }
 
     public void BackButton ()
     {

@@ -52,7 +52,7 @@ public class Asteroid : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision){
         
-        if(!ProfileSingleton.instance.newPlayer){
+        if(FindObjectOfType<TutorialGameManager>() == null){
             //verify if the asteroid collided with a bullet
             if(collision.gameObject.tag== "Bullet"){
                 //check if the size of the asteroid is big enough to be split
