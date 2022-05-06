@@ -328,7 +328,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 503732446}
   m_HandleRect: {fileID: 503732445}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -999,6 +999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   username: {fileID: 1787184936}
+  actualUsername: 
   addProfileToList: {fileID: 2092105975}
 --- !u!1 &860566110
 GameObject:
@@ -1083,13 +1084,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 791126118}
+        m_TargetAssemblyTypeName: ProfileButton, Assembly-CSharp
+        m_MethodName: BackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
