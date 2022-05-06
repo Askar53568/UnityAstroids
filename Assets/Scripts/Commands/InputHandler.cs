@@ -19,15 +19,18 @@ public class InputHandler : MonoBehaviour{
 
     private ShootCommand shoot;
 
+    private int progress=0;
 
 
-    private string inputForward = "w";
-    private string inputBack = "s";
-    private string inputLeft = "a";
-    private string inputRight = "d";
-    private string inputShoot = "space";
+
+    public string inputForward = "w";
+    public string inputBack = "s";
+    public string inputLeft = "a";
+    public string inputRight = "d";
+    public string inputShoot = "space";
 
     private void Start() {
+
         back = new MoveBackCommand(this.gameObject.GetComponent<Player>());
         forward = new MoveForwardCommand(this.gameObject.GetComponent<Player>());
         turnLeft = new TurnLeftCommand(this.gameObject.GetComponent<Player>());
@@ -36,9 +39,13 @@ public class InputHandler : MonoBehaviour{
     }
     public void AssignCommand(string inputForward, string inputBack, string inputLeft, string inputRight, string inputShoot){
         this.inputForward = inputForward;
+        ProfileSingleton.instance.up = inputForward;
         this.inputBack = inputBack;
+        ProfileSingleton.instance.back = inputBack;
         this.inputLeft = inputLeft;
+        ProfileSingleton.instance.left = inputLeft;
         this.inputRight = inputRight;
+        ProfileSingleton.instance.right = inputRight;
         this.inputShoot = inputShoot;
     }
 
@@ -52,7 +59,15 @@ public class InputHandler : MonoBehaviour{
         if (Input.GetKeyDown(inputShoot)) shoot.Execute();
         
     }
+    public int GetProgress(int progress, string direction){
+        if(direction.Equals("up")){
+            if(movingForward) progress++;
+        }
+        return progress;
+    }
     private void FixedUpdate() {
+        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
+
         if (movingForward) forward.Execute();
         if (movingBack) back.Execute();
         if (turningLeft) turnLeft.Execute();

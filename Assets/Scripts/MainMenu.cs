@@ -28,7 +28,6 @@ public class MainMenu : MonoBehaviour
             NewGame.GetComponentInChildren<Text>().color = Color.gray;
             LoadGame.GetComponentInChildren<Text>().color = Color.gray;
         }
-        
     }
 
    public void ProfileMenuButton ()
