@@ -19,8 +19,13 @@ public class GameManager : MonoBehaviour {
 
     public bool paused = false;
 
+    Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
+
+
     public GameObject gameOverUI;
     public GameObject gamePausedUI;
+
+    public GameObject navigationUI;
 
     //Lives of the player
     public int score { get; private set; }
@@ -96,12 +101,12 @@ public class GameManager : MonoBehaviour {
     //Enable the Game Over UI
     private void GameOver()
     {
-        
-        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
         if(profile.score < score) profile.score = score;
+        if(profile.newPlayer) profile.newPlayer = false;
         ProfileManager.SaveProfile(profile);
         gameOverUI.SetActive(true);
     }
+
 
     //Load the Main Menu Scene
     public void BackToMainMenu(){
@@ -133,13 +138,22 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    
+    public void ClearPowerUps(){
+        PowerUp[] powerUps = FindObjectsOfType<PowerUp>();
+
+        for (int i = 0; i < powerUps.Length; i++) {
+            Destroy(powerUps[i].gameObject);
+        }
+    }
+
     public void NewGame()
     {
-        Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
-
-        for (int i = 0; i < asteroids.Length; i++) {
-            Destroy(asteroids[i].gameObject);
+        if(profile.newPlayer){
+            Tutorial();
         }
+        ClearAsteroids();
+        ClearPowerUps();
 
         gameOverUI.SetActive(false);
         gamePausedUI.SetActive(false);
@@ -147,6 +161,12 @@ public class GameManager : MonoBehaviour {
         SetScore(0);
         SetLives(1);
         Respawn();
+    }
+
+    public void Tutorial(){
+        spawner.gameObject.SetActive(false);
+        navigationUI.SetActive(true);                                                                                                                                          
+
     }
 
     public void SaveGame(){
@@ -174,6 +194,8 @@ public class GameManager : MonoBehaviour {
 
         //Clear asteroids if any
         ClearAsteroids();
+        //Clear any powerups
+        ClearPowerUps();
         //Load existing asteroid data
         Asteroids asteroidsData = saveFile.asteroidsData;
         AsteroidData [] asteroids = asteroidsData.asteroids;
