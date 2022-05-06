@@ -14,7 +14,6 @@ public class TripleShotPowerUp : PowerUpEffect
             player.GetComponent<Player>().tripleShot = player.GetComponent<Player>().StartCoroutine(LimitedEffect(player));
         }
     }
-    
     IEnumerator LimitedEffect(GameObject player) {
         yield return new WaitForSeconds(10f);
         player.GetComponent<Player>().tripleShot = null;

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rigidBody;
+    public Rigidbody2D rigidBody;
 
     public Bullet bulletPrefab;
 
