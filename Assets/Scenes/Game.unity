@@ -924,6 +924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd399deba740da42bbc4cadae069bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidBody: {fileID: 0}
   bulletPrefab: {fileID: 305771468646689845, guid: 1bb2ec6c2fde5cf4b88dba76add59a0f, type: 3}
   thrustSpeed: 50
   turnSpeed: 400
@@ -960,6 +961,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0f5ae9a47727e498c1209601bbe02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputForward: w
+  inputBack: s
+  inputLeft: a
+  inputRight: d
+  inputShoot: space
 --- !u!1 &922119441
 GameObject:
   m_ObjectHideFlags: 0
@@ -6466,6 +6472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1703656724}
   - component: {fileID: 1703656723}
+  - component: {fileID: 1703656725}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6494,7 +6501,6 @@ MonoBehaviour:
   paused: 0
   gameOverUI: {fileID: 1431756012}
   gamePausedUI: {fileID: 1326028043}
-  navigationUI: {fileID: 0}
   scoreText: {fileID: 737277007}
   livesText: {fileID: 922119443}
   initialPosition: {x: 404, y: 123, z: 0}
@@ -6512,6 +6518,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1703656725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703656722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78baa065508f6be4e8b5795590c1b800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achObjPre: {fileID: 4342980286597731490, guid: d231d9d0860a5a44caae1a67723ba88c, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 4b978ed0dd5b69f4288e84918c8b8f55, type: 3}
+  - {fileID: 21300000, guid: 64370bb98597061408d02e0b1952d98d, type: 3}
+  - {fileID: 21300000, guid: 154e29f1e2c508541be0cf5c7bbb2911, type: 3}
+  - {fileID: 21300000, guid: 313467ae79de30e41a943e2d456e2270, type: 3}
+  - {fileID: 21300000, guid: 58aa1df5652a74e4196eec64e26a7b96, type: 3}
+  - {fileID: 21300000, guid: ee173412d6ab39a429b5e6f4d3243213, type: 3}
+  - {fileID: 21300000, guid: 39fb1a16cca0eb34c96fe8b53c714f85, type: 3}
+  - {fileID: 21300000, guid: 63a88f09e54d8c84d8be72662dbf60ce, type: 3}
+  - {fileID: 21300000, guid: a740f57541bd5cd43bc7637294b28160, type: 3}
+  - {fileID: 21300000, guid: a80ab252852700c4e91f16f9866b0d7b, type: 3}
+  - {fileID: 21300000, guid: 1099b312f26ecbb418a04b186999efe8, type: 3}
+  - {fileID: 21300000, guid: 9f7b52b28f7c0054d86c7ce7a6331dcb, type: 3}
+  score: 0
+  lives: 0
+  playerSpeed: 0
+  hasCash: 0
+  hasHeart: 0
+  hasWipe: 0
+  hasInvincible: 0
+  hasSpeed: 0
+  hasTriple: 0
+  hasTurn: 0
+  hasAll: 0
 --- !u!1 &1718662488
 GameObject:
   m_ObjectHideFlags: 0
