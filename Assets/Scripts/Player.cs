@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     public Coroutine speedInc;
     public Coroutine tripleShot;
+    public Coroutine turnInc;
+    public Coroutine invincible;
 
     private  void Awake()
     {
@@ -39,7 +41,4 @@ public class Player : MonoBehaviour
             FindObjectOfType<GameManager>().PlayerDied();
         }
     }
-
-
-
 }

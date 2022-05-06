@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour {
 
     public bool paused = false;
 
-
     public GameObject gameOverUI;
     public GameObject gamePausedUI;
 
@@ -97,14 +96,12 @@ public class GameManager : MonoBehaviour {
     //Enable the Game Over UI
     private void GameOver()
     {
+        
         Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
-
         if(profile.score < score) profile.score = score;
-        if(profile.newPlayer) profile.newPlayer = false;
         ProfileManager.SaveProfile(profile);
         gameOverUI.SetActive(true);
     }
-
 
     //Load the Main Menu Scene
     public void BackToMainMenu(){
@@ -136,24 +133,13 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    
-    public void ClearPowerUps(){
-        PowerUp[] powerUps = FindObjectsOfType<PowerUp>();
-
-        for (int i = 0; i < powerUps.Length; i++) {
-            Destroy(powerUps[i].gameObject);
-        }
-    }
-
     public void NewGame()
     {
-        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
+        Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
 
-        if(profile.newPlayer){
-            SceneManager.LoadScene("Tutorial");
+        for (int i = 0; i < asteroids.Length; i++) {
+            Destroy(asteroids[i].gameObject);
         }
-        ClearAsteroids();
-        ClearPowerUps();
 
         gameOverUI.SetActive(false);
         gamePausedUI.SetActive(false);
@@ -162,7 +148,6 @@ public class GameManager : MonoBehaviour {
         SetLives(1);
         Respawn();
     }
-
 
     public void SaveGame(){
         Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
@@ -189,8 +174,6 @@ public class GameManager : MonoBehaviour {
 
         //Clear asteroids if any
         ClearAsteroids();
-        //Clear any powerups
-        ClearPowerUps();
         //Load existing asteroid data
         Asteroids asteroidsData = saveFile.asteroidsData;
         AsteroidData [] asteroids = asteroidsData.asteroids;
@@ -219,13 +202,13 @@ public class GameManager : MonoBehaviour {
         gamePausedUI.SetActive(false);
     }
     
-    private void SetScore(int score)
+    public void SetScore(int score)
     {
         this.score = score;
         scoreText.text = score.ToString();
     }
 
-    private void SetLives(int lives)
+    public void SetLives(int lives)
     {
         this.lives = lives;
         livesText.text = lives.ToString();
