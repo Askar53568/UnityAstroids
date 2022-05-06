@@ -29,4 +29,8 @@ public class ProfileButton : MonoBehaviour {
         addProfileToList.AddItem(profile);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
+    public void BackButton ()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

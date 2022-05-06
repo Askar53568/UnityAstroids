@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour {
 
     //Load the Main Menu Scene
     public void BackToMainMenu(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame ()
