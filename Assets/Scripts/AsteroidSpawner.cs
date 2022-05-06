@@ -11,15 +11,20 @@ public class AsteroidSpawner : MonoBehaviour
     public float spawnRate = 4.0f;
     public float trajectoryVarience = 30.0f;
     public int spawnAmount = 1;
+    public bool tutorialMode = false;
     Vector2 trajectory;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(!tutorialMode){
         InvokeRepeating(nameof(Spawn), this.spawnRate, this.spawnRate);
+        }else{
+            Spawn();
+        }
     }
     //Asteroids needs to spawn at random positions with random trajectory
-    private void Spawn()
+    public void Spawn()
     {
         for (int i = 0; i< this.spawnAmount; i++)
         {

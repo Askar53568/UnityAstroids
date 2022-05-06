@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour {
 
         if(profile.score < score) profile.score = score;
         if(profile.newPlayer) profile.newPlayer = false;
+        ProfileSingleton.instance.newPlayer = false;
         ProfileManager.SaveProfile(profile);
         gameOverUI.SetActive(true);
     }

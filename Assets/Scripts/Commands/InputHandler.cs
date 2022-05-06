@@ -47,6 +47,7 @@ public class InputHandler : MonoBehaviour{
         this.inputRight = inputRight;
         ProfileSingleton.instance.right = inputRight;
         this.inputShoot = inputShoot;
+        ProfileSingleton.instance.shoot = inputShoot;
     }
 
 

@@ -51,17 +51,24 @@ public class Asteroid : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision){
-        //verify if the asteroid collided with a bullet
-        if(collision.gameObject.tag== "Bullet"){
-            //check if the size of the asteroid is big enough to be split
-            if((this.size * 0.5f)>= this.minSize){
-                CreateSplit();
-                CreateSplit();
-            } else {
-                CreatePowerUp();
+        
+        if(!ProfileSingleton.instance.newPlayer){
+            //verify if the asteroid collided with a bullet
+            if(collision.gameObject.tag== "Bullet"){
+                //check if the size of the asteroid is big enough to be split
+                if((this.size * 0.5f)>= this.minSize){
+                    CreateSplit();
+                    CreateSplit();
+                } else {
+                    CreatePowerUp();
+                }
+                //Find the Game manager object in the scene if it exists and execute the asteroidDestroyed method
+                FindObjectOfType<GameManager>().AsteroidDestroyed(this);
+                //regardless of the condition destroy the old asteroid
+                Destroy(this.gameObject);
             }
-            //Find the Game manager object in the scene if it exists and execute the asteroidDestroyed method
-            FindObjectOfType<GameManager>().AsteroidDestroyed(this);
+        }else{
+            FindObjectOfType<TutorialGameManager>().AsteroidDestroyed(this);
             //regardless of the condition destroy the old asteroid
             Destroy(this.gameObject);
         }

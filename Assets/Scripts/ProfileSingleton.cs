@@ -9,7 +9,8 @@ public class ProfileSingleton : MonoBehaviour {
     public string back {get;set;}
     public string left {get;set;}
     public string right {get;set;}
-    public int progress {get;set;}
+    public string shoot {get;set;}
+    public bool newPlayer = true;
 
     private void Awake() {
         if(instance){
