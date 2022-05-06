@@ -94,20 +94,35 @@ public class Asteroid : MonoBehaviour
 
     private void CreatePowerUp()
     {
-        Vector3 position = this.transform.position;
-        Quaternion rotation = new Quaternion();
-        PowerUp powerUp = Instantiate(powerUpPre, position, rotation);
-        int rnd = Random.Range(0,2);
-        switch (rnd)
-        {
-            case 0:
-            powerUp.powerUpEffect = new SpeedPowerUp(50,50);
-            powerUp.spriteNum = 0;
-            break;
-            case 1:
-            powerUp.powerUpEffect = new TripleShotPowerUp();
-            powerUp.spriteNum = 1;
-            break;
-        }
+        PowerUp powerUp;
+        int rnd = Random.Range(0,100);
+        if (rnd < 16) {
+            Vector3 position = this.transform.position;
+            Quaternion rotation = new Quaternion();
+            powerUp = Instantiate(powerUpPre, position, rotation);
+
+            if (rnd < 3) {
+                powerUp.powerUpEffect = new SpeedPowerUp(50);
+                powerUp.spriteNum = 0;
+            } else if (rnd < 4) {
+                powerUp.powerUpEffect = new TripleShotPowerUp();
+                powerUp.spriteNum = 1;
+            } else if (rnd < 7) {
+                powerUp.powerUpEffect = new TurnPowerUp(600);
+                powerUp.spriteNum = 2;
+            } else if (rnd < 9) {
+                powerUp.powerUpEffect = new InvinciblePowerUp();
+                powerUp.spriteNum = 3;
+            } else if (rnd < 10) {
+                powerUp.powerUpEffect = new HeartPowerUp();
+                powerUp.spriteNum = 4;
+            } else if (rnd < 11) {
+                powerUp.powerUpEffect = new WipePowerUp();
+                powerUp.spriteNum = 5;
+            } else if (rnd < 16) {
+                powerUp.powerUpEffect = new CashPowerUp();
+                powerUp.spriteNum = 6;
+            }
+        } 
     }
 }
