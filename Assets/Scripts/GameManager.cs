@@ -133,13 +133,19 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    
+    public void ClearPowerUps(){
+        PowerUp[] powerUps = FindObjectsOfType<PowerUp>();
+
+        for (int i = 0; i < powerUps.Length; i++) {
+            Destroy(powerUps[i].gameObject);
+        }
+    }
+
     public void NewGame()
     {
-        Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
-
-        for (int i = 0; i < asteroids.Length; i++) {
-            Destroy(asteroids[i].gameObject);
-        }
+        ClearAsteroids();
+        ClearPowerUps();
 
         gameOverUI.SetActive(false);
         gamePausedUI.SetActive(false);
@@ -174,6 +180,8 @@ public class GameManager : MonoBehaviour {
 
         //Clear asteroids if any
         ClearAsteroids();
+        //Clear any powerups
+        ClearPowerUps();
         //Load existing asteroid data
         Asteroids asteroidsData = saveFile.asteroidsData;
         AsteroidData [] asteroids = asteroidsData.asteroids;
