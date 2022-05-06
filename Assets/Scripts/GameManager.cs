@@ -19,13 +19,9 @@ public class GameManager : MonoBehaviour {
 
     public bool paused = false;
 
-    Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
-
 
     public GameObject gameOverUI;
     public GameObject gamePausedUI;
-
-    public GameObject navigationUI;
 
     //Lives of the player
     public int score { get; private set; }
@@ -101,6 +97,8 @@ public class GameManager : MonoBehaviour {
     //Enable the Game Over UI
     private void GameOver()
     {
+        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
+
         if(profile.score < score) profile.score = score;
         if(profile.newPlayer) profile.newPlayer = false;
         ProfileManager.SaveProfile(profile);
@@ -149,8 +147,10 @@ public class GameManager : MonoBehaviour {
 
     public void NewGame()
     {
+        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
+
         if(profile.newPlayer){
-            Tutorial();
+            SceneManager.LoadScene("Tutorial");
         }
         ClearAsteroids();
         ClearPowerUps();
@@ -163,11 +163,6 @@ public class GameManager : MonoBehaviour {
         Respawn();
     }
 
-    public void Tutorial(){
-        spawner.gameObject.SetActive(false);
-        navigationUI.SetActive(true);                                                                                                                                          
-
-    }
 
     public void SaveGame(){
         Asteroid[] asteroids = FindObjectsOfType<Asteroid>();

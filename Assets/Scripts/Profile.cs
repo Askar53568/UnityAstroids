@@ -7,12 +7,11 @@ public class Profile {
     public string profileId;
     public string username;
 
-    public bool newPlayer;
+    public bool newPlayer = true;
     public int score = 0;
 
     public Profile(string profileId, string username){
         this.profileId = profileId;
         this.username = username;
-        this.newPlayer = true;
     }
 }
