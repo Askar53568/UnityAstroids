@@ -32,7 +32,7 @@ public class TutorialGameManager : MonoBehaviour{
 
     private float waitTime = 20.0f;
     private bool fillComplete = false;
-    private int direction=0;
+    private int direction=5;
 
     public Vector3 initialPosition = new Vector3(404f,123f,0);
     public Vector3 powerUpPosition = new Vector3(404f,400.0f,0);
@@ -41,6 +41,8 @@ public class TutorialGameManager : MonoBehaviour{
 
 
     public void NewGame(){
+        this.player.gameObject.layer = LayerMask.NameToLayer("Respawn");
+
         mainText.gameObject.SetActive(false);
         upControl.SetActive(true);
         backControl.SetActive(false);
@@ -90,6 +92,7 @@ public class TutorialGameManager : MonoBehaviour{
     }
 
     private void NewMethod(){
+
         direction++;
         fillComplete = false;
         resistance = true;
@@ -117,19 +120,22 @@ public class TutorialGameManager : MonoBehaviour{
                 break;
             case 6:
                 mainText.text = "Now Get a Speed PowerUp!";
+                this.player.transform.position = initialPosition;
                 CreatePowerUp(0);
                 spawner.gameObject.SetActive(true);
                 spawner.Spawn();
                 break;
             case 7:
+                this.player.transform.position = initialPosition;
                 mainText.text = "Now Get a Triple Bullet PowerUp!";
                 CreatePowerUp(1);
                 spawner.gameObject.SetActive(true);
                 spawner.Spawn();
                 break;
             case 8:
+                spawner.gameObject.SetActive(false);
                 mainText.text = "The tutorial is over now. Enjoy playing!";
-                Invoke("TutorialOver", 2.0f);
+                Invoke("TutorialOver", 10.0f);
                 break;
 
             
@@ -163,7 +169,7 @@ public class TutorialGameManager : MonoBehaviour{
         switch (num)
         {
             case 0:
-            powerUp.powerUpEffect = new SpeedPowerUp(50,50);
+            powerUp.powerUpEffect = new SpeedPowerUp(400);
             powerUp.spriteNum = 0;
             break;
             case 1:

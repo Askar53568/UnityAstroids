@@ -11,7 +11,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PowerUp
   - Water
   - UI
   - Player
@@ -19,7 +19,7 @@ TagManager:
   - Asteroid
   - Boundary
   - Respawn
-  - 
+  - Tutorial
   - 
   - 
   - 
