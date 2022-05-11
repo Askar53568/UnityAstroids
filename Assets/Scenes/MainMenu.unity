@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 311270437}
   - component: {fileID: 311270436}
   m_Layer: 5
-  m_Name: Achive Text
+  m_Name: Start Game Text\
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -505,7 +505,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Achievements
+  m_Text: start
 --- !u!222 &311270437
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1399,7 +1399,7 @@ GameObject:
   - component: {fileID: 1063933651}
   - component: {fileID: 1063933650}
   m_Layer: 5
-  m_Name: Achievement Button
+  m_Name: Start Game Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
