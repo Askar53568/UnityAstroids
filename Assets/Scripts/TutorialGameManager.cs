@@ -32,7 +32,7 @@ public class TutorialGameManager : MonoBehaviour{
 
     private float waitTime = 20.0f;
     private bool fillComplete = false;
-    private int direction=5;
+    private int direction=0;
 
     public Vector3 initialPosition = new Vector3(404f,123f,0);
     public Vector3 powerUpPosition = new Vector3(404f,400.0f,0);
