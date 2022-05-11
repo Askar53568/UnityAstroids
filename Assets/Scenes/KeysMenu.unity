@@ -566,11 +566,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbf852379865a64caa4cc54666f9022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardPlaceholder: {fileID: 421756799}
-  backPlaceholder: {fileID: 456125897}
-  leftPlaceholder: {fileID: 202482833}
-  rightPlaceholder: {fileID: 1344223551}
-  shootPlaceholder: {fileID: 891518369}
+  forwardPlaceholder: {fileID: 641622519}
+  backPlaceholder: {fileID: 57453599}
+  leftPlaceholder: {fileID: 1158006414}
+  rightPlaceholder: {fileID: 1134258730}
+  shootPlaceholder: {fileID: 367923613}
   forward: w
   back: s
   left: a
@@ -3102,11 +3102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0f5ae9a47727e498c1209601bbe02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputForward: w
-  inputBack: s
-  inputLeft: a
-  inputRight: d
-  inputShoot: space
 --- !u!114 &1735778423
 MonoBehaviour:
   m_ObjectHideFlags: 0

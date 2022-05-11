@@ -50,11 +50,11 @@ public class TutorialGameManager : MonoBehaviour{
         rightControl.SetActive(false);
         
 
-        upControl.transform.Find("Text").GetComponent<Text>().text = ProfileSingleton.instance.up;
-        backControl.transform.Find("Text").GetComponent<Text>().text = ProfileSingleton.instance.back;
-        leftControl.transform.Find("Text").GetComponent<Text>().text = ProfileSingleton.instance.left;
-        rightControl.transform.Find("Text").GetComponent<Text>().text = ProfileSingleton.instance.right;
-        shootControl.transform.Find("Text").GetComponent<Text>().text = ProfileSingleton.instance.shoot;
+        upControl.transform.Find("Text").GetComponent<Text>().text = ProfileSingleton.instance.up.ToString();
+        backControl.transform.Find("Text").GetComponent<Text>().text = ProfileSingleton.instance.back.ToString();
+        leftControl.transform.Find("Text").GetComponent<Text>().text = ProfileSingleton.instance.left.ToString();
+        rightControl.transform.Find("Text").GetComponent<Text>().text = ProfileSingleton.instance.right.ToString();
+        shootControl.transform.Find("Text").GetComponent<Text>().text = ProfileSingleton.instance.shoot.ToString();
 
 
     }

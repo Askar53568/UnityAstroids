@@ -10,8 +10,6 @@ public class InputHandler : MonoBehaviour{
     private bool movingBack;
     private bool turningLeft;
     private bool turningRight;
-    private bool shooting;
-
     private MoveBackCommand back;
     private MoveForwardCommand forward;
     private TurnLeftCommand turnLeft;
@@ -31,11 +29,11 @@ public class InputHandler : MonoBehaviour{
 
     void Update()
     {
-        movingForward = (Input.GetKey(ProfileSingleton.instance.up ?? "w")); 
-        movingBack = (Input.GetKey(ProfileSingleton.instance.back ?? "s")); 
-        turningLeft = (Input.GetKey(ProfileSingleton.instance.left ?? "a")); 
-        turningRight = (Input.GetKey(ProfileSingleton.instance.right ?? "d" )); 
-        if (Input.GetKeyDown(ProfileSingleton.instance.shoot ?? "space")) shoot.Execute();
+        movingForward = (Input.GetKey(ProfileSingleton.instance.up)); 
+        movingBack = (Input.GetKey(ProfileSingleton.instance.back)); 
+        turningLeft = (Input.GetKey(ProfileSingleton.instance.left)); 
+        turningRight = (Input.GetKey(ProfileSingleton.instance.right)); 
+        if (Input.GetKeyDown(ProfileSingleton.instance.shoot)) shoot.Execute();
         
     }
     public int GetProgress(int progress, string direction){

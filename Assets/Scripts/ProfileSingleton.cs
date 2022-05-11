@@ -5,11 +5,11 @@ public class ProfileSingleton : MonoBehaviour {
     
 
     public string profileId {get; set;}
-    public string up {get;set;}
-    public string back {get;set;}
-    public string left {get;set;}
-    public string right {get;set;}
-    public string shoot {get;set;}
+    public KeyCode up {get;set;}
+    public KeyCode back {get;set;}
+    public KeyCode left {get;set;}
+    public KeyCode right {get;set;}
+    public KeyCode shoot {get;set;}
     public bool newPlayer = true;
 
     private void Awake() {
@@ -21,6 +21,14 @@ public class ProfileSingleton : MonoBehaviour {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+    private void Start() {
+            up = KeyCode.W;
+            back = KeyCode.S;
+            left = KeyCode.A;
+            right = KeyCode.D;
+            shoot = KeyCode.Space;
+        
     }
 
 

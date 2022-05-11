@@ -6,55 +6,103 @@ using UnityEngine.UI;
 
 public class KeysMenu : MonoBehaviour
 {
-    public Text forwardPlaceholder;
-    public Text backPlaceholder;
-    public Text leftPlaceholder;
-    public Text rightPlaceholder;
-    public Text shootPlaceholder;
+    public InputField forwardPlaceholder;
+    public InputField backPlaceholder;
+    public InputField leftPlaceholder;
+    public InputField rightPlaceholder;
+    public InputField shootPlaceholder;
 
-    public string forward = "w";
-    public string back = "s";
-    public string left = "a";
-    public string right = "d";
-    public string shoot = "space";
+    private readonly System.Array keyCodes = System.Enum.GetValues(typeof(KeyCode));
 
-    
-    public void GetForwardInput(string forward){
-        this.forward = forward;
-        ProfileSingleton.instance.up = forward;
-        forwardPlaceholder.text = forward;
-    }
-    public void GetBackInput(string back){
-        this.back = back;
-        ProfileSingleton.instance.back = back;
-        backPlaceholder.text = back;
-    }
-    public void GetLeftInput(string left){
-        this.left = left;
-        ProfileSingleton.instance.left = left;
-        leftPlaceholder.text = left;
-    }
-    public void GetRightInput(string right){
-        this.right = right;
-        ProfileSingleton.instance.right = right;
-        rightPlaceholder.text = right;
-    }
-    public void GetShootInput(string shoot){
-        this.shoot = shoot;
-        ProfileSingleton.instance.shoot = shoot;
-        shootPlaceholder.text = shoot;
-    }
-    public void GoBackButton(){
+
+    public void GoBackButton()
+    {
         SceneManager.LoadScene("Game");
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        ProfileSingleton.instance.up = forward;
-        ProfileSingleton.instance.back = back;
-        ProfileSingleton.instance.left = left;
-        ProfileSingleton.instance.right = right;
-        ProfileSingleton.instance.shoot = shoot;
 
+    private void Start()
+    {
+        leftPlaceholder.transform.Find("Placeholder").GetComponent<Text>().text = ProfileSingleton.instance.left.ToString();
+        rightPlaceholder.transform.Find("Placeholder").GetComponent<Text>().text = ProfileSingleton.instance.right.ToString();
+        forwardPlaceholder.transform.Find("Placeholder").GetComponent<Text>().text = ProfileSingleton.instance.up.ToString();
+        backPlaceholder.transform.Find("Placeholder").GetComponent<Text>().text = ProfileSingleton.instance.back.ToString();
+        shootPlaceholder.transform.Find("Placeholder").GetComponent<Text>().text = ProfileSingleton.instance.shoot.ToString();
     }
+
+    private void Update()
+    {
+        if (forwardPlaceholder.isFocused)
+        {
+            if (Input.anyKeyDown)
+            {
+                foreach (KeyCode keyCode in keyCodes)
+                {
+                    if (Input.GetKey(keyCode))
+                    {
+                        forwardPlaceholder.transform.Find("Placeholder").GetComponent<Text>().text = keyCode.ToString();
+                        forwardPlaceholder.transform.Find("Text").GetComponent<Text>().text = keyCode.ToString();
+                        ProfileSingleton.instance.up = keyCode;
+                        break;
+                    }
+                }
+            }
+
+        }
+        else if (backPlaceholder.isFocused)
+        {
+            foreach (KeyCode keyCode in keyCodes)
+            {
+                if (Input.GetKey(keyCode))
+                {
+                    backPlaceholder.transform.Find("Placeholder").GetComponent<Text>().text = keyCode.ToString();
+                    backPlaceholder.transform.Find("Text").GetComponent<Text>().text = keyCode.ToString();
+                    ProfileSingleton.instance.back = keyCode;
+                    break;
+                }
+            }
+
+        }
+        else if (leftPlaceholder.isFocused)
+        {
+            foreach (KeyCode keyCode in keyCodes)
+            {
+                if (Input.GetKey(keyCode))
+                {
+                    leftPlaceholder.transform.Find("Placeholder").GetComponent<Text>().text = keyCode.ToString();
+                    leftPlaceholder.transform.Find("Text").GetComponent<Text>().text = keyCode.ToString();
+                    ProfileSingleton.instance.left = keyCode;
+                    break;
+                }
+            }
+
+        }
+        else if (rightPlaceholder.isFocused)
+        {
+            foreach (KeyCode keyCode in keyCodes)
+            {
+                if (Input.GetKey(keyCode))
+                {
+                    rightPlaceholder.transform.Find("Placeholder").GetComponent<Text>().text = keyCode.ToString();
+                    rightPlaceholder.transform.Find("Text").GetComponent<Text>().text = keyCode.ToString();
+                    ProfileSingleton.instance.right = keyCode;
+                    break;
+                }
+            }
+
+        }
+        else if (shootPlaceholder.isFocused)
+        {
+            foreach (KeyCode keyCode in keyCodes)
+            {
+                if (Input.GetKey(keyCode))
+                {
+                    shootPlaceholder.transform.Find("Placeholder").GetComponent<Text>().text = keyCode.ToString();
+                    shootPlaceholder.transform.Find("Text").GetComponent<Text>().text = keyCode.ToString();
+                    ProfileSingleton.instance.shoot = keyCode;
+                    break;
+                }
+            }
+        }
+    }
+
 }
