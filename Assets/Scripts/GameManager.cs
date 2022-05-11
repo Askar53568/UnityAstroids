@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour {
 
     //Load the Main Menu Scene
     public void BackToMainMenu(){
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame ()

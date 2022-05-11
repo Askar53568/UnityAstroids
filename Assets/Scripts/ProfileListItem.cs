@@ -8,7 +8,7 @@ public class ProfileListItem : MonoBehaviour {
         //tell next scene which profile has been chosen
         ProfileSingleton.instance.profileId = profileId;
         //load the game scene
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Game");
         //switch the scene
     }   
 }
