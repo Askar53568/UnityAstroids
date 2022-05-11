@@ -52,7 +52,7 @@ public class AchievementManager : MonoBehaviour
             return;
 
         achievements = new List<Achievement>();
-        achievements.Add(new Achievement(sprites[0], "Full of Life", "Have 5 lives", (object o) => lives >= 5));
+        achievements.Add(new Achievement(sprites[0], "Up Down Left Right", "Re-Map the keys", (object o) => lives >= 5));
         achievements.Add(new Achievement(sprites[1], "Like a cat", "Have 9 lives", (object o) => lives >= 9));
         achievements.Add(new Achievement(sprites[2], "First Bl- Gravel", "Destroy an asteroid", (object o) => score > 0));
         achievements.Add(new Achievement(sprites[3], "Going Places", "Reach a score of 1000", (object o) => score > 1000));

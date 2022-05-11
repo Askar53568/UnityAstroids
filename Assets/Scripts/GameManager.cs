@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Return)) Pause();
     }
 
+    public void SettingsButton(){
+        SceneManager.LoadScene("KeysMenu");
+    }
+
     //Account for the player death
     public void PlayerDied(){
         //Play the explosion effect at the position of the player's death

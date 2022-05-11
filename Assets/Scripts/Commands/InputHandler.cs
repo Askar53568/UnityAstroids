@@ -19,16 +19,6 @@ public class InputHandler : MonoBehaviour{
 
     private ShootCommand shoot;
 
-    private int progress=0;
-
-
-
-    public string inputForward = "w";
-    public string inputBack = "s";
-    public string inputLeft = "a";
-    public string inputRight = "d";
-    public string inputShoot = "space";
-
     private void Start() {
 
         back = new MoveBackCommand(this.gameObject.GetComponent<Player>());
@@ -37,27 +27,15 @@ public class InputHandler : MonoBehaviour{
         turnRight = new TurnRightCommand(this.gameObject.GetComponent<Player>());
         shoot = new ShootCommand(this.gameObject.GetComponent<Player>());
     }
-    public void AssignCommand(string inputForward, string inputBack, string inputLeft, string inputRight, string inputShoot){
-        this.inputForward = inputForward;
-        ProfileSingleton.instance.up = inputForward;
-        this.inputBack = inputBack;
-        ProfileSingleton.instance.back = inputBack;
-        this.inputLeft = inputLeft;
-        ProfileSingleton.instance.left = inputLeft;
-        this.inputRight = inputRight;
-        ProfileSingleton.instance.right = inputRight;
-        this.inputShoot = inputShoot;
-        ProfileSingleton.instance.shoot = inputShoot;
-    }
 
 
     void Update()
     {
-        movingForward = (Input.GetKey(inputForward)); 
-        movingBack = (Input.GetKey(inputBack)); 
-        turningLeft = (Input.GetKey(inputLeft)); 
-        turningRight = (Input.GetKey(inputRight)); 
-        if (Input.GetKeyDown(inputShoot)) shoot.Execute();
+        movingForward = (Input.GetKey(ProfileSingleton.instance.up ?? "w")); 
+        movingBack = (Input.GetKey(ProfileSingleton.instance.back ?? "s")); 
+        turningLeft = (Input.GetKey(ProfileSingleton.instance.left ?? "a")); 
+        turningRight = (Input.GetKey(ProfileSingleton.instance.right ?? "d" )); 
+        if (Input.GetKeyDown(ProfileSingleton.instance.shoot ?? "space")) shoot.Execute();
         
     }
     public int GetProgress(int progress, string direction){
