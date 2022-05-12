@@ -152,6 +152,13 @@ public class TutorialGameManager : MonoBehaviour{
 
     }
 
+    public void OnSkipButton(){
+        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
+        profile.newPlayer = false;
+        ProfileManager.SaveProfile(profile);
+        SceneManager.LoadScene("Game");
+    }
+
 
     public void AsteroidDestroyed(Asteroid asteroid)
     {

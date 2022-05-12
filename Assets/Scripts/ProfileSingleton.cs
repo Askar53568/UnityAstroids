@@ -22,14 +22,4 @@ public class ProfileSingleton : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
         }
     }
-    private void Start() {
-            up = KeyCode.W;
-            back = KeyCode.S;
-            left = KeyCode.A;
-            right = KeyCode.D;
-            shoot = KeyCode.Space;
-        
-    }
-
-
 }

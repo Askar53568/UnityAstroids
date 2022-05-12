@@ -23,6 +23,11 @@ public class AddProfileToList : MonoBehaviour
     {
         //instantiate a profile game object from the profile refab
         GameObject newObject = Instantiate(prefab);
+        ProfileSingleton.instance.up = profile.up;
+        ProfileSingleton.instance.back = profile.back;
+        ProfileSingleton.instance.right = profile.right;
+        ProfileSingleton.instance.left = profile.left;
+        ProfileSingleton.instance.shoot = profile.shoot;
         //make the profile the child of the current game object 
         //whcih is the gridcontent bc the addprofiletolist is a component of the gridcontent
         newObject.transform.SetParent(gameObject.transform, false);

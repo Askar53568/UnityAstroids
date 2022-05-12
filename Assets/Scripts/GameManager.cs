@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour {
     public Player player;
     public Asteroid asteroidPre;
 
+    private static Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
+
+
     public AsteroidSpawner spawner;
     //Reference to the explosion effect
     public ParticleSystem explosion;
@@ -101,8 +104,6 @@ public class GameManager : MonoBehaviour {
     //Enable the Game Over UI
     private void GameOver()
     {
-        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
-
         if(profile.score < score) profile.score = score;
         if(profile.newPlayer) profile.newPlayer = false;
         ProfileSingleton.instance.newPlayer = false;
@@ -228,6 +229,11 @@ public class GameManager : MonoBehaviour {
     {
         this.score = score;
         scoreText.text = score.ToString();
+
+        if(score>50){
+            profile.achievements.Add("soldier");
+            Debug.LogError("achievement logged - soldier");
+        }
     }
 
     public void SetLives(int lives)

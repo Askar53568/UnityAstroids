@@ -9,13 +9,11 @@ public class AchObj : MonoBehaviour
     public string titleString;
     public Text description;
     public string descString;
-    public Image image;
 
     private void Start()
     {
         title.text = titleString;
         description.text = descString;
-        //spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 }

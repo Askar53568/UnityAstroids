@@ -23,7 +23,7 @@ public class ProfileButton : MonoBehaviour {
         profileId = System.Guid.NewGuid().ToString();
          //either put textbox next to the button or new scene
          //create a new profile with the created profileid and default text
-        Profile profile = new Profile(profileId, username.text.ToString());
+        Profile profile = new Profile(profileId, username.text.ToString(), KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.Space);
         //add profile to the list
         ProfileManager.AddProfile(profile);
         addProfileToList.AddItem(profile);

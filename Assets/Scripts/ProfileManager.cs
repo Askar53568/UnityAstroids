@@ -6,9 +6,6 @@ public static class ProfileManager{
     //saves the profiles to the storage and retrieves them
     private static List<Profile> profiles = new List<Profile>();
 
-
-    public static Profile currentProfile {get; private set;}
-
     public static void SaveProfile(Profile profile){
         SaveSystem.SaveProfiles(profiles.ToArray());
     }

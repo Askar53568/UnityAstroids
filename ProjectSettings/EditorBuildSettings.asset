@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KeysMenu.unity
     guid: af814e1c584814a4c846c74793c856b2
+  - enabled: 1
+    path: Assets/Scenes/Achievements.unity
+    guid: b885ca2d275cb5342a19735988b35bd5
   m_configObjects: {}

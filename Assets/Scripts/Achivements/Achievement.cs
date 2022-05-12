@@ -4,34 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Achievement {
+    //for every profile ill have a list of strings
+    //initially it's emtpy
+    //im gonna have a dictionary of name, desc of achievements 
+    //on start initialize dictionary of achievements 
+    //
     public string title;
     public string description;
-    public Predicate<object> requirement;
-    public Sprite img;
-    public bool achieved;
 
-    public Achievement(Sprite img, string title, string description, Predicate<object> requirement)
+    public Achievement(string title, string description)
     {
-        this.img = img;
         this.title = title;
         this.description = description;
-        this.requirement = requirement;
-    }
-
-    public bool UpdateCompletion()
-    {
-        if (achieved) return false;
-
-        if (areRequirementsMet()) {
-            Debug.Log($"{title}: {description}");
-            achieved = true;
-            return true;
-        }
-        return false;
-    }
-
-    public bool areRequirementsMet()
-    {
-        return requirement.Invoke(null);
     }
 }
