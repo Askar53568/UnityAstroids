@@ -19,21 +19,37 @@ public class LoadAchievements : MonoBehaviour
         Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
         score.text = profile.score.ToString();
         username.text = profile.username;
-        List<string> achievementNames = profile.achievements; 
-        foreach (string constant in achievementNames){
-            if(AchievementManager.achievements.ContainsKey(constant)){
+        List<string> achievementNames = profile.achievements;
+        foreach (string constant in achievementNames)
+        {
+            if (AchievementManager.achievements.ContainsKey(constant))
+            {
                 Achievement achievement = AchievementManager.achievements[constant];
                 AddItem(achievement);
             }
         }
     }
 
-    public void OnBackButton(){
+    public void OnBackButton()
+    {
         SceneManager.LoadScene("ProfilesMenu");
     }
 
-    public void OnPlayButton(){
-        SceneManager.LoadScene("Game");
+    public void OnPlayButton()
+    {
+        ProfileManager.GetAllProfiles();
+
+        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
+
+        if (profile.newPlayer)
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
+        else
+        {
+
+            SceneManager.LoadScene("Game");
+        }
     }
 
 

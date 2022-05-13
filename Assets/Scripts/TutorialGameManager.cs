@@ -200,7 +200,7 @@ public class TutorialGameManager : MonoBehaviour
     public void OnSkipButton()
     {
         Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
-        profile.newPlayer = false;
+        profile.newPlayer = true;
         ProfileManager.SaveProfile(profile);
         SceneManager.LoadScene("Game");
     }

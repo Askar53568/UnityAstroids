@@ -74,7 +74,11 @@ public class GameManager : MonoBehaviour
         this.explosion.transform.position = this.player.transform.position;
         this.explosion.Play();
         //Decrement the amount of lives
-        SetLives(lives - 1);
+        if (lives > 0)
+        {
+
+            SetLives(lives - 1);
+        }
         if (this.lives <= 0)
         {
             GameOver();
@@ -131,12 +135,13 @@ public class GameManager : MonoBehaviour
     //Enable the Game Over UI
     private void GameOver()
     {
+        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
 
         if (profile.score < score) profile.score = score;
-        if(score==0){
+        if (score == 0)
+        {
             CallAchievement(DESCENT);
         }
-        if (profile.newPlayer) profile.newPlayer = false;
         if (score == 0)
         {
             if (!profile.achievements.Contains(DESCENT))
@@ -144,7 +149,6 @@ public class GameManager : MonoBehaviour
                 profile.achievements.Add(DESCENT);
             }
         }
-        ProfileSingleton.instance.newPlayer = false;
         ProfileManager.SaveProfile(profile);
         gameOverUI.SetActive(true);
     }
@@ -201,11 +205,6 @@ public class GameManager : MonoBehaviour
     public void NewGame()
     {
         Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
-
-        if (profile.newPlayer)
-        {
-            SceneManager.LoadScene("Tutorial");
-        }
         CallAchievement(BATTLE);
         ClearAsteroids();
         ClearPowerUps();
@@ -294,13 +293,19 @@ public class GameManager : MonoBehaviour
 
     public void CallAchievement(string constant)
     {
+        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
+
         if (!profile.achievements.Contains(constant))
         {
             AchObj notif = new AchObj();
             profile.achievements.Add(constant);
-            if(FindObjectOfType<AchObj>()){
+            ProfileManager.SaveProfile(profile);
+            if (FindObjectOfType<AchObj>())
+            {
                 notif = FindObjectOfType<AchObj>();
-            }else{
+            }
+            else
+            {
                 notif = Instantiate(achievementPre, initialPosition, player.transform.rotation);
             }
             Achievement achievement = AchievementManager.achievements[constant];
