@@ -214,7 +214,7 @@ public class GameManager : MonoBehaviour
         gamePausedUI.SetActive(false);
 
         SetScore(0);
-        SetLives(1);
+        SetLives(3);
         Respawn();
     }
 

@@ -36,12 +36,6 @@ public class InputHandler : MonoBehaviour{
         if (Input.GetKeyDown(ProfileSingleton.instance.shoot)) shoot.Execute();
         
     }
-    public int GetProgress(int progress, string direction){
-        if(direction.Equals("up")){
-            if(movingForward) progress++;
-        }
-        return progress;
-    }
     private void FixedUpdate() {
         if (movingForward) forward.Execute();
         if (movingBack) back.Execute();
