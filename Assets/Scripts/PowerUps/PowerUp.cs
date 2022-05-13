@@ -17,6 +17,7 @@ public class PowerUp : MonoBehaviour
     void Start()
     {
         spriteRenderer.sprite = sprites[this.spriteNum];
+        Destroy(this.gameObject, 20f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

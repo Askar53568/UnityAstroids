@@ -108,7 +108,7 @@ public class Asteroid : MonoBehaviour
         Quaternion rotation = new Quaternion();
         powerUp = Instantiate(powerUpPre, position, rotation);
         System.Random rnd = new System.Random();
-        int chance = rnd.Next(0, 3);
+        int chance = rnd.Next(0, 4);
         switch (chance)
         {
             default:
@@ -124,7 +124,7 @@ public class Asteroid : MonoBehaviour
                 powerUp.spriteNum = 1;
                 break;
             case 2:
-                powerUp.powerUpEffect = new ShieldPowerUp();
+                powerUp.powerUpEffect = new InvinciblePowerUp();
                 powerUp.spriteNum = 3;
                 break;
             case 3:

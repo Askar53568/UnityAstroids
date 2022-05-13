@@ -447,6 +447,7 @@ MonoBehaviour:
   player: {fileID: 214110853}
   asteroidPre: {fileID: -9160010751467296399, guid: f6fb683c995fdf3408ca28d2c5b23f07, type: 3}
   powerUpPre: {fileID: -3343503869530713310, guid: a9517e9dbfc9f4c47b98cae60c6023bc, type: 3}
+  shieldPre: {fileID: 5987532196633170989, guid: 4b460c4bdc28cb74fac940f834cff1b3, type: 3}
   spawner: {fileID: 1296796869}
   explosion: {fileID: 1480774053}
   respawnTime: 2
