@@ -43,8 +43,6 @@ public class InputHandler : MonoBehaviour{
         return progress;
     }
     private void FixedUpdate() {
-        Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
-
         if (movingForward) forward.Execute();
         if (movingBack) back.Execute();
         if (turningLeft) turnLeft.Execute();

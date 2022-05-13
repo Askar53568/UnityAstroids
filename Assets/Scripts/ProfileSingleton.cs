@@ -10,6 +10,7 @@ public class ProfileSingleton : MonoBehaviour {
     public KeyCode left {get;set;}
     public KeyCode right {get;set;}
     public KeyCode shoot {get;set;}
+    public bool playing {get;set;}
     public bool newPlayer = true;
 
     private void Awake() {

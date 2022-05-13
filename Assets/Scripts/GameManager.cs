@@ -1,15 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 
 
 public class GameManager : MonoBehaviour {
+
+    private string SOLDIER = "soldier";
+    private string FROZEN = "frozen";
+    private string ASTEROID = "asteroid";
+    private string BYSTANDER = "bystander";
+    private string WAR = "war";
+    private string ARMORED = "armored";
+    private string DESCENT = "descent";
+    private string BATTLE = "battle";
     //Instance of the player
     public Player player;
     public Asteroid asteroidPre;
 
     private static Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
+    private List<string> achievements = profile.achievements;
 
 
     public AsteroidSpawner spawner;
@@ -104,8 +115,24 @@ public class GameManager : MonoBehaviour {
     //Enable the Game Over UI
     private void GameOver()
     {
+        // player.GetComponent<Player>().StopCoroutine(player.GetComponent<Player>().armored);
+        // player.GetComponent<Player>().armored = null;
+        // player.GetComponent<Player>().StopCoroutine(player.GetComponent<Player>().invincible);
+        // player.GetComponent<Player>().invincible = null;
+        // player.GetComponent<Player>().StopCoroutine(player.GetComponent<Player>().tripleShot);
+        // player.GetComponent<Player>().tripleShot = null;
+        // player.GetComponent<Player>().StopCoroutine(player.GetComponent<Player>().turnInc);
+        // player.GetComponent<Player>().turnInc = null;
+        // player.GetComponent<Player>().StopCoroutine(player.GetComponent<Player>().speedInc);
+        // player.GetComponent<Player>().speedInc = null;
+        
         if(profile.score < score) profile.score = score;
         if(profile.newPlayer) profile.newPlayer = false;
+        if(score==0){
+            if(!profile.achievements.Contains(DESCENT)){
+                profile.achievements.Add(DESCENT);
+            }
+        }
         ProfileSingleton.instance.newPlayer = false;
         ProfileManager.SaveProfile(profile);
         gameOverUI.SetActive(true);
@@ -230,9 +257,14 @@ public class GameManager : MonoBehaviour {
         this.score = score;
         scoreText.text = score.ToString();
 
-        if(score>50){
-            profile.achievements.Add("soldier");
-            Debug.LogError("achievement logged - soldier");
+        if(score>500){
+            if(!profile.achievements.Contains(SOLDIER)){
+                profile.achievements.Add(SOLDIER);
+            }
+        }if(score>10000){
+            if(!profile.achievements.Contains(WAR)){
+                profile.achievements.Add(WAR);
+            }
         }
     }
 

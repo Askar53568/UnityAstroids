@@ -23,14 +23,14 @@ public class Asteroid : MonoBehaviour
     private Rigidbody2D asteroid;
 
     public Vector2 trajectory;
-    
+
 
     private void Awake()
     {
         speed = 300.0f;
         spriteRenderer = GetComponent<SpriteRenderer>();
         asteroid = GetComponent<Rigidbody2D>();
-    
+
     }
     void Start()
     {
@@ -40,7 +40,7 @@ public class Asteroid : MonoBehaviour
         this.transform.localScale = Vector3.one * this.size;
         //the larger the size the larger the mass
         asteroid.mass = this.size;
-        
+
     }
 
     public void SetTrajectory(Vector2 direction)
@@ -50,16 +50,22 @@ public class Asteroid : MonoBehaviour
         Destroy(this.gameObject, this.maxLifetime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision){
-        
-        if(FindObjectOfType<TutorialGameManager>() == null){
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (FindObjectOfType<TutorialGameManager>() == null)
+        {
             //verify if the asteroid collided with a bullet
-            if(collision.gameObject.tag== "Bullet"){
+            if (collision.gameObject.tag == "Bullet")
+            {
                 //check if the size of the asteroid is big enough to be split
-                if((this.size * 0.5f)>= this.minSize){
+                if ((this.size * 0.5f) >= this.minSize)
+                {
                     CreateSplit();
                     CreateSplit();
-                } else {
+                }
+                else
+                {
                     CreatePowerUp();
                 }
                 //Find the Game manager object in the scene if it exists and execute the asteroidDestroyed method
@@ -67,7 +73,9 @@ public class Asteroid : MonoBehaviour
                 //regardless of the condition destroy the old asteroid
                 Destroy(this.gameObject);
             }
-        }else{
+        }
+        else
+        {
             FindObjectOfType<TutorialGameManager>().AsteroidDestroyed(this);
             //regardless of the condition destroy the old asteroid
             Destroy(this.gameObject);
@@ -83,46 +91,23 @@ public class Asteroid : MonoBehaviour
         //offset the position of the new half asteroids by a little
         position += Random.insideUnitCircle * 200.0f;
         Asteroid half = Instantiate(this, position, this.transform.rotation);
-        
+
         //Cut the size in half
         half.size = this.size * 0.5f;
         //Give the new asteroids a random new trajectory
-        half.trajectory = Random.insideUnitCircle.normalized*1000.0f;
-        half.SetTrajectory(half.trajectory); 
-        Debug.Log("half asteroid position", half);   
-        }
+        half.trajectory = Random.insideUnitCircle.normalized * 1000.0f;
+        half.SetTrajectory(half.trajectory);
+        Debug.Log("half asteroid position", half);
+    }
 
     private void CreatePowerUp()
     {
         PowerUp powerUp;
-        int rnd = Random.Range(0,100);
-        if (rnd < 16) {
-            Vector3 position = this.transform.position;
-            Quaternion rotation = new Quaternion();
-            powerUp = Instantiate(powerUpPre, position, rotation);
 
-            if (rnd < 3) {
-                powerUp.powerUpEffect = new SpeedPowerUp(50);
-                powerUp.spriteNum = 0;
-            } else if (rnd < 4) {
-                powerUp.powerUpEffect = new TripleShotPowerUp();
-                powerUp.spriteNum = 1;
-            } else if (rnd < 7) {
-                powerUp.powerUpEffect = new TurnPowerUp(600);
-                powerUp.spriteNum = 2;
-            } else if (rnd < 9) {
-                powerUp.powerUpEffect = new InvinciblePowerUp();
-                powerUp.spriteNum = 3;
-            } else if (rnd < 10) {
-                powerUp.powerUpEffect = new HeartPowerUp();
-                powerUp.spriteNum = 4;
-            } else if (rnd < 11) {
-                powerUp.powerUpEffect = new WipePowerUp();
-                powerUp.spriteNum = 5;
-            } else if (rnd < 16) {
-                powerUp.powerUpEffect = new CashPowerUp();
-                powerUp.spriteNum = 6;
-            }
-        } 
+        Vector3 position = this.transform.position;
+        Quaternion rotation = new Quaternion();
+        powerUp = Instantiate(powerUpPre, position, rotation);
+        powerUp.powerUpEffect = new FreezePowerUp();
+        powerUp.spriteNum = 0;
     }
 }

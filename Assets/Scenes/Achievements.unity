@@ -902,8 +902,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 193.3, y: 240.625}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 210.2, y: 245.9984}
+  m_SizeDelta: {x: 193.81, y: 40.7467}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1196292904
 MonoBehaviour:
@@ -932,7 +932,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 54
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1443614569}
         m_TargetAssemblyTypeName: LoadAchievements, Assembly-CSharp
         m_MethodName: OnBackButton
         m_Mode: 1
@@ -1335,8 +1335,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -165.1, y: 240.625}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -216.32, y: 235.25}
+  m_SizeDelta: {x: 245.1, y: 40.7467}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1622103466
 MonoBehaviour:
@@ -1365,7 +1365,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -1463,7 +1463,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1443614569}
         m_TargetAssemblyTypeName: LoadAchievements, Assembly-CSharp
         m_MethodName: OnPlayButton
         m_Mode: 1

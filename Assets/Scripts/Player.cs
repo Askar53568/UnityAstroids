@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public Coroutine turnInc;
     public Coroutine invincible;
 
+    public Coroutine freeze;
+
     private  void Awake()
     {
 
