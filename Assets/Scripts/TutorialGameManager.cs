@@ -136,9 +136,7 @@ public class TutorialGameManager : MonoBehaviour{
                 spawner.gameObject.SetActive(false);
                 mainText.text = "The tutorial is over now. Enjoy playing!";
                 Invoke("TutorialOver", 10.0f);
-                break;
-
-            
+                break;   
         }
         Debug.LogError("New Method!");
     }
@@ -177,11 +175,11 @@ public class TutorialGameManager : MonoBehaviour{
         {
             case 0:
             powerUp.powerUpEffect = new SpeedPowerUp(400);
-            powerUp.spriteNum = 0;
+            powerUp.spriteNum = 1;
             break;
             case 1:
-            powerUp.powerUpEffect = new TripleShotPowerUp();
-            powerUp.spriteNum = 1;
+            powerUp.powerUpEffect = new FreezePowerUp();
+            powerUp.spriteNum = 0;
             break;
         }
     }

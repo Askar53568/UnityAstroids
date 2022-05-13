@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     //Instance of the player
     public Player player;
 
+    public Shield shieldPre;
+
     public AchObj achievementPre;
 
     private static Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);

@@ -112,8 +112,8 @@ public class Asteroid : MonoBehaviour
         switch (chance)
         {
             default:
-                powerUp.powerUpEffect = new SpeedPowerUp(100);
-                powerUp.spriteNum = 1;
+                powerUp.powerUpEffect = new ShieldPowerUp();
+                powerUp.spriteNum = 4;
                 break;
             case 0:
                 powerUp.powerUpEffect = new FreezePowerUp();
@@ -124,12 +124,12 @@ public class Asteroid : MonoBehaviour
                 powerUp.spriteNum = 1;
                 break;
             case 2:
-                powerUp.powerUpEffect = new InvinciblePowerUp();
+                powerUp.powerUpEffect = new ShieldPowerUp();
                 powerUp.spriteNum = 3;
                 break;
             case 3:
-                powerUp.powerUpEffect = new WipePowerUp();
-                powerUp.spriteNum = 3;
+                powerUp.powerUpEffect = new ShieldPowerUp();
+                powerUp.spriteNum = 4;
                 break;   
         }
     }

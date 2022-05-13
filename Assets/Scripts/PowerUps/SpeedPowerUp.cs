@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PowerUps/SpeedInc")]
 public class SpeedPowerUp : PowerUpEffect
 {
     public float thrustSpeedAmount;
