@@ -107,7 +107,30 @@ public class Asteroid : MonoBehaviour
         Vector3 position = this.transform.position;
         Quaternion rotation = new Quaternion();
         powerUp = Instantiate(powerUpPre, position, rotation);
-        powerUp.powerUpEffect = new FreezePowerUp();
-        powerUp.spriteNum = 0;
+        System.Random rnd = new System.Random();
+        int chance = rnd.Next(0, 3);
+        switch (chance)
+        {
+            default:
+                powerUp.powerUpEffect = new SpeedPowerUp(100);
+                powerUp.spriteNum = 1;
+                break;
+            case 0:
+                powerUp.powerUpEffect = new FreezePowerUp();
+                powerUp.spriteNum = 0;
+                break;
+            case 1:
+                powerUp.powerUpEffect = new SpeedPowerUp(100);
+                powerUp.spriteNum = 1;
+                break;
+            case 2:
+                powerUp.powerUpEffect = new InvinciblePowerUp();
+                powerUp.spriteNum = 3;
+                break;
+            case 3:
+                powerUp.powerUpEffect = new WipePowerUp();
+                powerUp.spriteNum = 3;
+                break;   
+        }
     }
 }

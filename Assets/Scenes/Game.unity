@@ -961,11 +961,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0f5ae9a47727e498c1209601bbe02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputForward: w
-  inputBack: s
-  inputLeft: a
-  inputRight: d
-  inputShoot: space
 --- !u!1 &922119441
 GameObject:
   m_ObjectHideFlags: 0
@@ -6702,7 +6697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 876629499}
-  asteroidPre: {fileID: -9160010751467296399, guid: f6fb683c995fdf3408ca28d2c5b23f07, type: 3}
+  achievementPre: {fileID: 4342980286597731490, guid: d231d9d0860a5a44caae1a67723ba88c, type: 3}
   spawner: {fileID: 925826947}
   explosion: {fileID: 1597874636}
   respawnTime: 2

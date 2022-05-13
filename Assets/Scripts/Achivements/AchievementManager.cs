@@ -14,9 +14,11 @@ public static class AchievementManager
         achievements.Add("asteroid", new Achievement("Primal Desire", "Destroy an asteroid"));
         achievements.Add("soldier", new Achievement("Soldier", "Reach a score of 500"));
         achievements.Add("bystander", new Achievement("Bystander", "Unlock the Invincibility power up"));
+        achievements.Add("freeze", new Achievement("Freeze! Don't move!", "Unlock a Time Freeze power up"));
         achievements.Add("war", new Achievement("Declaration of War", "Reach a score of 10000"));
         achievements.Add("armored", new Achievement("The Armored Titan", "Unlock the shield power up"));
         achievements.Add("descent", new Achievement("Descent", "End the game with a score of zero"));
-        achievements.Add("battle", new Achievement("First Battle", "Complete the tutorial"));
+        achievements.Add("speed", new Achievement("Jaws Titan", "Unlock a speed achievement"));
+        achievements.Add("battle", new Achievement("First Battle", "Start your first game"));
    }
 }

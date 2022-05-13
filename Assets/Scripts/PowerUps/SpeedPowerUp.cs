@@ -13,11 +13,17 @@ public class SpeedPowerUp : PowerUpEffect
     }
     public override void Effect(GameObject player)
     {
-        if (player.GetComponent<Player>().speedInc != null) {
+        if (player.GetComponent<Player>().speedInc != null)
+        {
             player.GetComponent<Player>().StopCoroutine(player.GetComponent<Player>().speedInc);
             player.GetComponent<Player>().speedInc = player.GetComponent<Player>().StartCoroutine(LimitedEffect(player));
-        } else {
+        }
+        else
+        {
             player.GetComponent<Player>().thrustSpeed += thrustSpeedAmount;
+            player.GetComponent<Player>().turnSpeed += thrustSpeedAmount;
+            GameManager manager = FindObjectOfType<GameManager>();
+            manager.CallAchievement("speed");
             player.GetComponent<Player>().speedInc = player.GetComponent<Player>().StartCoroutine(LimitedEffect(player));
         }
     }
@@ -27,7 +33,8 @@ public class SpeedPowerUp : PowerUpEffect
         player.GetComponent<Player>().thrustSpeed -= thrustSpeedAmount;
     }
 
-    IEnumerator LimitedEffect(GameObject player) {
+    IEnumerator LimitedEffect(GameObject player)
+    {
         yield return new WaitForSeconds(10f);
         EndEffect(player);
         player.GetComponent<Player>().speedInc = null;

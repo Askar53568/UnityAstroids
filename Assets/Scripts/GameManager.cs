@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     private string SOLDIER = "soldier";
     private string FROZEN = "frozen";
@@ -17,7 +18,8 @@ public class GameManager : MonoBehaviour {
     private string BATTLE = "battle";
     //Instance of the player
     public Player player;
-    public Asteroid asteroidPre;
+
+    public AchObj achievementPre;
 
     private static Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
     private List<string> achievements = profile.achievements;
@@ -45,31 +47,38 @@ public class GameManager : MonoBehaviour {
     public Text livesText;
 
     //position at the center of the screen
-    public Vector3 initialPosition = new Vector3(404f,123f,0);
+    public Vector3 initialPosition = new Vector3(404f, 123f, 0);
 
 
-    private void Start() {
+    private void Start()
+    {
         NewGame();
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Return)) Pause();
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return)) Pause();
     }
 
-    public void SettingsButton(){
+    public void SettingsButton()
+    {
         SceneManager.LoadScene("KeysMenu");
     }
 
     //Account for the player death
-    public void PlayerDied(){
+    public void PlayerDied()
+    {
         //Play the explosion effect at the position of the player's death
         this.explosion.transform.position = this.player.transform.position;
         this.explosion.Play();
         //Decrement the amount of lives
         SetLives(lives - 1);
-        if (this.lives <= 0){
+        if (this.lives <= 0)
+        {
             GameOver();
-        }else{
+        }
+        else
+        {
             Invoke(nameof(Respawn), this.respawnTime);
         }
     }
@@ -79,19 +88,24 @@ public class GameManager : MonoBehaviour {
         //Play the explosion effect at the position of the asteroid's death
         this.explosion.transform.position = asteroid.transform.position;
         this.explosion.Play();
-
+        CallAchievement(ASTEROID);
         //small - 100 points
-        if(asteroid.size < asteroid.minSize+20.0f){
-            SetScore(score+100);
-        //medium size - 50 points
-        }else if(asteroid.size < 125.0f){
-             SetScore(score + 50);
-        //large size - 25 points
-        }else{
+        if (asteroid.size < asteroid.minSize + 20.0f)
+        {
+            SetScore(score + 100);
+            //medium size - 50 points
+        }
+        else if (asteroid.size < 125.0f)
+        {
+            SetScore(score + 50);
+            //large size - 25 points
+        }
+        else
+        {
             SetScore(score + 25);
         }
     }
-    
+
 
     //Respawn the player when they have lives left
     public void Respawn()
@@ -115,21 +129,16 @@ public class GameManager : MonoBehaviour {
     //Enable the Game Over UI
     private void GameOver()
     {
-        // player.GetComponent<Player>().StopCoroutine(player.GetComponent<Player>().armored);
-        // player.GetComponent<Player>().armored = null;
-        // player.GetComponent<Player>().StopCoroutine(player.GetComponent<Player>().invincible);
-        // player.GetComponent<Player>().invincible = null;
-        // player.GetComponent<Player>().StopCoroutine(player.GetComponent<Player>().tripleShot);
-        // player.GetComponent<Player>().tripleShot = null;
-        // player.GetComponent<Player>().StopCoroutine(player.GetComponent<Player>().turnInc);
-        // player.GetComponent<Player>().turnInc = null;
-        // player.GetComponent<Player>().StopCoroutine(player.GetComponent<Player>().speedInc);
-        // player.GetComponent<Player>().speedInc = null;
-        
-        if(profile.score < score) profile.score = score;
-        if(profile.newPlayer) profile.newPlayer = false;
+
+        if (profile.score < score) profile.score = score;
         if(score==0){
-            if(!profile.achievements.Contains(DESCENT)){
+            CallAchievement(DESCENT);
+        }
+        if (profile.newPlayer) profile.newPlayer = false;
+        if (score == 0)
+        {
+            if (!profile.achievements.Contains(DESCENT))
+            {
                 profile.achievements.Add(DESCENT);
             }
         }
@@ -140,40 +149,49 @@ public class GameManager : MonoBehaviour {
 
 
     //Load the Main Menu Scene
-    public void BackToMainMenu(){
+    public void BackToMainMenu()
+    {
         SceneManager.LoadScene(0);
     }
 
-    public void QuitGame ()
+    public void QuitGame()
     {
         Debug.Log("Quit");
         Application.Quit();
     }
 
-    public void Pause(){
+    public void Pause()
+    {
         paused = !paused;
-        if (paused){
+        if (paused)
+        {
             Time.timeScale = 0;
             gamePausedUI.SetActive(true);
-        } else{
+        }
+        else
+        {
             Time.timeScale = 1;
             gamePausedUI.SetActive(false);
         }
     }
 
-    public void ClearAsteroids(){
+    public void ClearAsteroids()
+    {
         Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
 
-        for (int i = 0; i < asteroids.Length; i++) {
+        for (int i = 0; i < asteroids.Length; i++)
+        {
             Destroy(asteroids[i].gameObject);
         }
     }
 
-    
-    public void ClearPowerUps(){
+
+    public void ClearPowerUps()
+    {
         PowerUp[] powerUps = FindObjectsOfType<PowerUp>();
 
-        for (int i = 0; i < powerUps.Length; i++) {
+        for (int i = 0; i < powerUps.Length; i++)
+        {
             Destroy(powerUps[i].gameObject);
         }
     }
@@ -182,9 +200,11 @@ public class GameManager : MonoBehaviour {
     {
         Profile profile = ProfileManager.FindProfile(ProfileSingleton.instance.profileId);
 
-        if(profile.newPlayer){
+        if (profile.newPlayer)
+        {
             SceneManager.LoadScene("Tutorial");
         }
+        CallAchievement(BATTLE);
         ClearAsteroids();
         ClearPowerUps();
 
@@ -197,13 +217,15 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    public void SaveGame(){
+    public void SaveGame()
+    {
         Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
         SaveSystem.SaveGame(asteroids, this, player, ProfileSingleton.instance.profileId);
     }
-    
 
-    public void LoadGame(){
+
+    public void LoadGame()
+    {
         //Unpause the game
         Pause();
         //Load Player
@@ -226,13 +248,14 @@ public class GameManager : MonoBehaviour {
         ClearPowerUps();
         //Load existing asteroid data
         Asteroids asteroidsData = saveFile.asteroidsData;
-        AsteroidData [] asteroids = asteroidsData.asteroids;
-        for (int i = 0; i < asteroids.Length; i++) {
+        AsteroidData[] asteroids = asteroidsData.asteroids;
+        for (int i = 0; i < asteroids.Length; i++)
+        {
             Vector3 positionAsteroid;
             positionAsteroid.x = asteroids[i].position[0];
             positionAsteroid.y = asteroids[i].position[1];
             positionAsteroid.z = asteroids[i].position[2];
-            
+
             Quaternion rotation;
             rotation.x = asteroids[i].rotation[0];
             rotation.y = asteroids[i].rotation[1];
@@ -251,20 +274,37 @@ public class GameManager : MonoBehaviour {
         //Remove the paused game UI
         gamePausedUI.SetActive(false);
     }
-    
+
     public void SetScore(int score)
     {
         this.score = score;
         scoreText.text = score.ToString();
 
-        if(score>500){
-            if(!profile.achievements.Contains(SOLDIER)){
-                profile.achievements.Add(SOLDIER);
+        if (score > 500)
+        {
+            CallAchievement(SOLDIER);
+        }
+        if (score > 1000)
+        {
+            CallAchievement(WAR);
+        }
+    }
+
+    public void CallAchievement(string constant)
+    {
+        if (!profile.achievements.Contains(constant))
+        {
+            AchObj notif = new AchObj();
+            profile.achievements.Add(constant);
+            if(FindObjectOfType<AchObj>()){
+                notif = FindObjectOfType<AchObj>();
+            }else{
+                notif = Instantiate(achievementPre, initialPosition, player.transform.rotation);
             }
-        }if(score>10000){
-            if(!profile.achievements.Contains(WAR)){
-                profile.achievements.Add(WAR);
-            }
+            Achievement achievement = AchievementManager.achievements[constant];
+            notif.titleString = achievement.title;
+            notif.descString = achievement.description;
+            Destroy(notif.gameObject, 5f);
         }
     }
 
